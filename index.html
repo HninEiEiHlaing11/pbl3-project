@@ -1,133 +1,106 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>PBL3 project</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PBL3 — Group G</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
     <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #f7f8fa;
+            --border: #e2e4e9;
+            --text: #1a1d26;
+            --text2: #3d4154;
+            --text3: #9095a8;
+            --accent: #2563eb;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            line-height: 1.6;
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 24px;
         }
-        h1, h2 {
-            color: #2c3e50;
+
+        .wrap {
+            max-width: 720px;
+            width: 100%;
         }
-        .section {
+
+        .tag {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text3);
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        h1 span { color: var(--accent); }
+
+        .sub {
+            font-size: 14px;
+            color: var(--text3);
+            font-family: 'DM Mono', monospace;
             margin-bottom: 40px;
         }
-        .idea {
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 8px;
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin-bottom: 36px;
         }
-        nav a {
-            margin-right: 15px;
-            text-decoration: none;
-            color: #2980b9;
+
+        .para-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        p {
+            font-size: 15.5px;
+            color: var(--text2);
+            line-height: 1.9;
+            margin-bottom: 36px;
+            text-align: justify;
         }
     </style>
 </head>
-
 <body>
+<div class="wrap">
 
-    <!-- Navigation -->
-    <nav>
-        <a href="#overview">Overview</a>
-        <a href="#ideas">Initial Ideas</a>
-        <a href="#proposal">Project Proposal</a>
-        <a href="#team">Team</a>
-    </nav>
+    <div class="tag">PBL3 · Group G · Project Proposal</div>
+    <h1>NoiseMap <span>NYC</span></h1>
+    <div class="sub">Predictive Neighbourhood Noise Intelligence for Apartment Renters</div>
 
-    <!-- Overview -->
-    <div class="section" id="overview">
-        <h1>Pbl3-project</h1>
-        <p>
-            This project aims to apply smart city concepts to solve real-world urban problems.
-            Our team is currently exploring different problem areas and evaluating feasible solutions
-            that can be developed into a functional prototype.
-        </p>
-    </div>
+    <hr>
 
-    <!-- Initial Ideas -->
-    <div class="section" id="ideas">
-        <h2>Initial Project Ideas</h2>
+    <div class="para-label">Problem Statement & Objectives</div>
+    <p>Renters typically evaluate neighbourhoods based on a single visit, reflecting only current conditions and failing to capture how noise may evolve over their tenancy period. Prolonged noise exposure exceeding the World Health Organization's recommended threshold of 55 decibels has been associated with chronic health conditions including cardiovascular disease and sleep disturbance. Furthermore, empirical research indicates that noise above this threshold reduces apartment rental values by approximately 2% per unit increase, making this both a public health and financial concern. However, no existing tool forecasts how neighbourhood noise levels will change over a 6 to 12 month horizon or identifies the specific sources driving those changes. This project addresses this gap by utilising publicly available data to predict future neighbourhood noise levels, attribute them to their dominant sources, and deliver findings through a renter-facing interactive map.</p>
+    <p>Renters typically evaluate neighbourhoods based on a single visit, reflecting only current conditions failing to reflect conditions over their tenancy period. Prolonged noise exposure exceeding the WHO threshold of 55 decibels is linked to chronic health conditions including cardiovascular disease and sleep disorders. Moreover, research also indicates that noise above this threshold can reduce apartment rental values by approximately 2% per unit of noise increase, making this both a health and financial concern. However, no existing tools forecast how the noise level in a neighborhood can change over the year, nor a breakdown of the specific sources.
+This project addresses this gap by utilizing publicly available data to predict future neighbourhood noise levels, attribute them to their dominant sources, and deliver findings through an interactive map
+</p>
+    <div class="para-label">Methodology & Features</div>
+    <p>The system ingests five open data sources — NYC construction permit filings, traffic volume counts, MapPLUTO zoning data, NYC 311 noise complaints, and acoustic readings from the SONYC urban sensor network — spatially and temporally aligned to a standardised 200×200 metre grid by month, producing a unified matrix used to train an XGBoost regression model for monthly noise prediction over a 12-month timeline, incorporating approved future permits and seasonal traffic projections as forward-looking inputs. SHAP is then applied to decompose each prediction into the contribution of each noise source, displayed to users as human-readable badges such as Construction and Traffic. The system delivers a colour-coded prediction map across all grid blocks, a noise timeline chart per grid, a lease overlap calculator highlighting predicted noisy months within a user's tenancy period, and a neighbourhood comparison tool for side-by-side noise profiling of two addresses.</p>
 
-        <div class="idea">
-            <h3>1. Smart Bike Safety Routing </h3>
-            <p> 
-                A navigation system that recommends safer routes for cyclists based on road
-                conditions, traffic levels, and bike lane availability, encouraging safer
-                compliance with new cycling regulations.
-            </p>
-        </div>
-
-        <div class="idea">
-            <h3>2. Smart Evacuation Guidance System </h3>
-            <p>
-                 A system that helps users find safe evacuation routes during disasters.
-                It focuses on assisting residents, especially foreign users, by providing
-                hazard-aware navigation, evacuation center locations, and emergency guidance.
-            </p>
-        </div>
-
-        <div class="idea">
-            <h3>3. Urban Gardening Assistant</h3>
-            <p>
-                A system that provides plant care recommendations for urban residents based on
-                weather conditions, helping users manage watering, temperature, and plant selection.
-            </p>
-        </div>
-
-        <!-- Placeholder for adding more ideas -->
-        <div class="idea">
-            <h3>4. (more Idea)</h3>
-            <p>
-                Additional ideas can be added here!
-            </p>
-        </div>
-    </div>
-
-    <!-- Final Project Proposal for week 4 -->
-    <div class="section" id="proposal">
-        <h2>Project Proposal (Draft)</h2>
-
-        <h3>Vision</h3>
-        <p>
-            smth
-        </p>
-
-        <h3>Objectives</h3>
-        <ul>
-            <li>Identify a relevant smart city problem</li>
-            <li>Collect and process appropriate datasets</li>
-            <li>Develop a working prototype</li>
-            <li>Visualize insights effectively</li>
-        </ul>
-
-        <h3>Problem Area</h3>
-        <p>
-            smth
-        </p>
-
-        <h3>Notes</h3>
-        <p>
-            This proposal is in the initial stage and will be refined as we finalize
-            our project idea and data sources.
-        </p>
-    </div>
-
-    <!-- Team Section -->
-    <div class="section" id="team">
-        <h2>Group G Team Members</h2>
-        <ul>
-            <li>CHEN Yuanmeng</li>
-            <li>HNIN EI EI HLAING </li>
-            <li>MARCUS Tiew Kai Xiang</li>
-            <li>OMAR Muhammad</li>
-            <li>TANAKA Shiyu</li>
-            <li>ZHU Yining</li>
-        </ul>
-    </div>
-
+</div>
 </body>
 </html>
