@@ -89,18 +89,15 @@
 
     <div class="tag">PBL3 · Group G · Project Proposal</div>
     <h1>NoiseMap <span>NYC</span></h1>
-    <div class="sub">Predictive Neighbourhood Noise Intelligence for Apartment Renters</div>
-
+    
     <hr>
 
     <div class="para-label">Problem Statement & Objectives</div>
-    <p>Renters typically evaluate neighbourhoods based on a single visit, reflecting only current conditions and failing to capture how noise may evolve over their tenancy period. Prolonged noise exposure exceeding the World Health Organization's recommended threshold of 55 decibels has been associated with chronic health conditions including cardiovascular disease and sleep disturbance. Furthermore, empirical research indicates that noise above this threshold reduces apartment rental values by approximately 2% per unit increase, making this both a public health and financial concern. However, no existing tool forecasts how neighbourhood noise levels will change over a 6 to 12 month horizon or identifies the specific sources driving those changes. This project addresses this gap by utilising publicly available data to predict future neighbourhood noise levels, attribute them to their dominant sources, and deliver findings through a renter-facing interactive map.</p>
     <p>Renters typically evaluate neighbourhoods based on a single visit, reflecting only current conditions failing to reflect conditions over their tenancy period. Prolonged noise exposure exceeding the WHO threshold of 55 decibels is linked to chronic health conditions including cardiovascular disease and sleep disorders. Moreover, research also indicates that noise above this threshold can reduce apartment rental values by approximately 2% per unit of noise increase, making this both a health and financial concern. However, no existing tools forecast how the noise level in a neighborhood can change over the year, nor a breakdown of the specific sources.
 This project addresses this gap by utilizing publicly available data to predict future neighbourhood noise levels, attribute them to their dominant sources, and deliver findings through an interactive map
 </p>
-    <div class="para-label">Methodology & Features</div>
-    <p>The system ingests five open data sources — NYC construction permit filings, traffic volume counts, MapPLUTO zoning data, NYC 311 noise complaints, and acoustic readings from the SONYC urban sensor network — spatially and temporally aligned to a standardised 200×200 metre grid by month, producing a unified matrix used to train an XGBoost regression model for monthly noise prediction over a 12-month timeline, incorporating approved future permits and seasonal traffic projections as forward-looking inputs. SHAP is then applied to decompose each prediction into the contribution of each noise source, displayed to users as human-readable badges such as Construction and Traffic. The system delivers a colour-coded prediction map across all grid blocks, a noise timeline chart per grid, a lease overlap calculator highlighting predicted noisy months within a user's tenancy period, and a neighbourhood comparison tool for side-by-side noise profiling of two addresses.</p>
-
-</div>
+    <p>The system ingests five open data sources: NYC construction permit filings, Traffic volume count, MapPLUTO zoning data, NYC 311 noise complaints and acoustic readings from SONYC urban sensor network. The data are aligned to a standardised 200x200 metre grid, resulting in a unified matrix used to train the XGBoost regression model for monthly noise prediction generation over a 12 months timeline, incorporating approved future permits and seasonal traffic projection as forward looking inputs. SHAP is then applied to decompose each prediction into the contribution of each noise source and displayed to users as human readable badges such as construction and traffic. The system delivers a colour coded prediction map, ….
+    </p>
+    </div>
 </body>
 </html>
