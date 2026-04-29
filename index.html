@@ -363,7 +363,7 @@
 <div class="wrap">
 
     <div class="hero" id="overview">
-        <div class="hero-tag">PBL3 · Group G · Smart City Project</div>
+        <div class="hero-tag">PBL3 · Group G </div>
         <h1>NoiseMap <span>NYC</span></h1>
         <div class="hero-sub">Predicting Urban Neighbourhood Noise for Apartment Renters</div>
     </div>
@@ -373,13 +373,13 @@
 
         <!-- Problem Statement -->
         <span class="section-label">Problem Statement</span>
-        <p>Urban renters often evaluate neighbourhood noise levels based on short-term experiences or real-time information. However, a neighbourhood that seems quiet in February may have an active construction site by May when the tenant moves in. Such changes matter because chronic exposure to noise above the WHO-recommended threshold of 55 decibels has been associated with serious health consequences including cardiovascular disease and sleep disturbance. Research further shows that noise above this threshold can reduce apartment rental values by approximately 2%, making it both a health and financial concern for renters. Despite these risks, existing tools only display static current noise conditions and provide no means to assess how neighbourhood noise may change over a 6 to 12 month horizon, nor do they identify the specific sources driving those changes.</p>
-
+        <p>Urban renters often evaluate neighbourhood noise levels based on short‑term experiences or real‑time information. However, a neighbourhood that seems quiet in February may have an active construction site by May when the tenant moves in. Such changes matter because chronic exposure to noise can harm health and reduce quality of life. Moreover, research shows that levels above 55 decibels can also lower apartment rental values 2% per unit, making noise both a health and financial concern for renters. Despite these risks, existing apps only display static, current noise conditions and lack tools to assess how neighbourhood noise may change in the future, nor do they provide a breakdown of specific noise sources.
+</p>
         <!-- Objectives -->
         <span class="section-label" style="margin-top: 28px;">Objectives</span>
         <ul class="obj-list">
             <li><span class="obj-n">1</span>Predict neighbourhood noise levels up to 12 months ahead for every 200×200 metre grid block across New York City</li>
-            <li><span class="obj-n">2</span>Decompose each prediction by noise source using SHAP, identifying the contribution of traffic, construction, and baseline urban activity</li>
+            <li><span class="obj-n">2</span>Decompose each prediction by noise source using SHAP(SHapley Additive exPlanations), identifying the contribution of traffic, construction and baseline urban activity</li>
             <li><span class="obj-n">3</span>Present noise level predictions and dominant noise sources per grid block as human-readable labels accessible to non-technical users</li>
             <li><span class="obj-n">4</span>Provide renter-specific tools to assess noise risk within their specific tenancy period</li>
             <li><span class="obj-n">5</span>Deliver all outputs through an interactive web map</li>
@@ -390,7 +390,7 @@
         <div class="related-list">
             <div class="related-item">
                 <div class="related-name">HowLoud</div>
-                <div class="related-desc">Provides a location-based Soundscore derived from modelled environmental noise sources including road traffic and airports.</div>
+                <div class="related-desc">Provides a location-based Soundscore derived from modelled environmental noise sources.</div>
             </div>
             <div class="related-item">
                 <div class="related-name">NYC Noise Complaint Map</div>
@@ -401,7 +401,7 @@
                 <div class="related-desc">Uses a network of acoustic sensors and machine learning to monitor and classify urban noise sources in real time across New York City.</div>
             </div>
         </div>
-        <div class="related-gap">These existing works focus on current or historical noise conditions. None provide forward-looking predictions, source-level attribution via explainable AI, or renter-specific decision tools — the gaps this project addresses.</div>
+        <div class="related-gap">These existing works focus on current or historical noise conditions. None provide forward-looking predictions, source-level attribution via explainable AI or renter-specific decision tools, the gaps this project addresses.</div>
 
     </div>
 
@@ -448,15 +448,16 @@
                 <div class="step-left"><div class="step-dot">5</div></div>
                 <div class="step-content">
                     <div class="step-title">SHAP Attribution</div>
-                    <div class="step-desc">SHAP is applied to decompose each prediction into the exact decibel contribution of each noise source — traffic, construction, and baseline urban activity — surfaced as human-readable badges.</div>
+                    <div class="step-desc">SHAP is applied to decompose each prediction into the exact decibel contribution of each noise source including traffic, construction and baseline urban activity and surfaced as human-readable badges.</div>
                 </div>
             </div>
 
         </div>
 
         <div class="sub-label">Data Visualisation</div>
-        <p>The output is delivered through an interactive map built in Streamlit and PyDeck. Grid blocks are colour-coded by predicted noise level and users can click any grid to view the SHAP source breakdown alongside renter-specific tools including a noise prediction timeline, lease overlap calculator, and neighbourhood comparison.</p>
-
+        <p>
+            The output is displayed through an interactive map built in Streamlit and PyDeck. Grid Blocks are color coded by predicted noise level and users can click any grid to view SHAP source breakdown alongside renter specific tools including a noise prediction timeline, lease overlap calculator and neighbourhood comparison.
+        </p>
     </div>
 
     <!-- DATA SOURCES -->
@@ -511,19 +512,19 @@
         <div class="features">
             <div class="feat">
                 <div class="feat-name">Prediction Map</div>
-                <div class="feat-desc">Colour-coded 200×200m grids with current, 6-month, and 12-month time toggle</div>
+                <div class="feat-desc">Colour-coded 200×200m grids with current and monthly time toggle</div>
             </div>
             <div class="feat">
                 <div class="feat-name">Noise Source Badges</div>
-                <div class="feat-desc">Construction / Traffic / Baseline labels derived from SHAP attribution per grid</div>
+                <div class="feat-desc">Construction, Traffic, Baseline labels derived from SHAP attribution per grid</div>
             </div>
             <div class="feat">
                 <div class="feat-name">Noise Timeline</div>
-                <div class="feat-desc">Line chart showing predicted noise trajectory across the 12-month forecast window</div>
+                <div class="feat-desc">Line chart showing predicted noise trajectory across the 12 months forecast window</div>
             </div>
             <div class="feat">
                 <div class="feat-name">Lease Overlap Calculator</div>
-                <div class="feat-desc">Enter move-in date and lease length to highlight predicted noisy months</div>
+                <div class="feat-desc">Enter move in date and lease length to highlight predicted noisy months</div>
             </div>
             <div class="feat">
                 <div class="feat-name">Neighbourhood Comparison</div>
@@ -531,7 +532,7 @@
             </div>
             <div class="feat">
                 <div class="feat-name">Confidence Indicator</div>
-                <div class="feat-desc">High / Medium / Low reliability rating based on sensor and permit data availability</div>
+                <div class="feat-desc">High, Medium, Low reliability rating based on sensor and permit data availability</div>
             </div>
         </div>
     </div>
