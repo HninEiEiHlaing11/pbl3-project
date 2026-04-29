@@ -19,6 +19,7 @@
             --accent-soft: #dce6ff;
             --accent-border: #99b4ff;
         }
+        
 
         html { scroll-behavior: smooth; }
 
@@ -109,9 +110,9 @@
 
         /* ── SECTION ── */
         .section {
-            padding: 48px 0;
-            border-bottom: 1px solid var(--border);
-        }
+    padding: 24px 0 24px; 
+    scroll-margin-top: 70px;
+}
 
         .section:last-child { border-bottom: none; }
 
@@ -353,9 +354,11 @@
     <div class="nav-logo">NoiseMap <span>NYC</span></div>
     <div class="nav-links">
         <a href="#overview">Overview</a>
-        <a href="#proposal">Proposal</a>
+        <a href="#Problem">Problem Statement</a>
+        <a href="#objective">Objectives</a>
+        <a href="#Related">Related Works</a>
         <a href="#approach">Approach</a>
-        <a href="#data">Data</a>
+        <a href="#data">Data Sources</a>
         <a href="#features">Features</a>
     </div>
 </nav>
@@ -372,10 +375,13 @@
     <div class="section" id="proposal">
 
         <!-- Problem Statement -->
+        <div class="section" id="Problem">
         <span class="section-label">Problem Statement</span>
         <p>Urban renters often evaluate neighbourhood noise levels based on short‑term experiences or real‑time information. However, a neighbourhood that seems quiet in February may have an active construction site by May when the tenant moves in. Such changes matter because chronic exposure to noise can harm health and reduce quality of life. Moreover, research shows that levels above 55 decibels can also lower apartment rental values 2% per unit, making noise both a health and financial concern for renters. Despite these risks, existing apps only display static, current noise conditions and lack tools to assess how neighbourhood noise may change in the future, nor do they provide a breakdown of specific noise sources.
 </p>
+</div>
         <!-- Objectives -->
+      <div class="section" id="objective">
         <span class="section-label" style="margin-top: 28px;">Objectives</span>
         <ul class="obj-list">
             <li><span class="obj-n">1</span>Predict neighbourhood noise levels up to 12 months ahead for every 200×200 metre grid block across New York City</li>
@@ -384,11 +390,12 @@
             <li><span class="obj-n">4</span>Provide renter-specific tools to assess noise risk within their specific tenancy period</li>
             <li><span class="obj-n">5</span>Deliver all outputs through an interactive web map</li>
         </ul>
-
+</div>
         <!-- Related Works -->
+        <div class="section" id="Related">
         <span class="section-label" style="margin-top: 28px;">Related Works</span>
-        <div class="related-list">
-            <div class="related-item">
+        <div class="related-list" >
+            <div class="related-item" >
                 <div class="related-name">HowLoud</div>
                 <div class="related-desc">Provides a location-based Soundscore derived from modelled environmental noise sources.</div>
             </div>
@@ -403,6 +410,7 @@
         </div>
         <div class="related-gap">These existing works focus on current or historical noise conditions. None provide forward-looking predictions, source-level attribution via explainable AI or renter-specific decision tools, the gaps this project addresses.</div>
 
+    </div>
     </div>
 
     <!-- PROPOSED APPROACH -->
@@ -540,3 +548,4 @@
 </div>
 </body>
 </html>
+
