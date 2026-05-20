@@ -373,176 +373,202 @@
     <!-- PROPOSAL -->
     <div class="section" id="proposal">
 
-        <!-- Problem Statement -->
-        <div class="section" id="Problem">
-        <span class="section-label">Problem Statement</span>
-        <p>Urban renters often evaluate neighbourhood noise levels based on short‑term experiences or real‑time information. However, a neighbourhood that seems quiet in February may have an active construction site by May when the tenant moves in. Such changes matter because chronic exposure to noise can harm health and reduce quality of life. Moreover, research shows that levels above 55 decibels can also lower apartment rental values 2% per unit, making noise both a health and financial concern for renters. Despite these risks, existing apps only display static, current noise conditions and lack tools to assess how neighbourhood noise may change in the future, nor do they provide a breakdown of specific noise sources.
-</p>
+       <!-- Problem Statement -->
+<div class="section" id="Problem">
+    <span class="section-label">Problem Statement</span>
+    <p>
+        Urban renters often judge neighbourhood noise based on how it sounds today, yet the most disruptive noise—especially construction—is a future event that current noise maps cannot reveal. A block that seems quiet during a February viewing may face a major construction project by May, exposing tenants to chronic noise that harms health and reduces quality of life. Research also shows that noise levels above 55 dB can reduce rental values by roughly 2% per decibel, making noise both a health and financial concern. Existing tools only display static, present‑day noise and cannot forecast how noise will change or which sources will drive it. This project addresses that gap by predicting future noise conditions at a fine‑grained 50×50 metre resolution.
+    </p>
 </div>
-        <!-- Objectives -->
-      <div class="section" id="objective">
-        <span class="section-label" style="margin-top: 28px;">Objectives</span>
-        <ul class="obj-list">
-            <li><span class="obj-n">1</span>Predict neighbourhood noise levels up to 12 months ahead for every 200×200 metre grid block across New York City</li>
-            <li><span class="obj-n">2</span>Decompose each prediction by noise source using SHAP(SHapley Additive exPlanations), identifying the contribution of traffic, construction and baseline urban activity</li>
-            <li><span class="obj-n">3</span>Present noise level predictions and dominant noise sources per grid block as human-readable labels accessible to non-technical users</li>
-            <li><span class="obj-n">4</span>Provide renter-specific tools to assess noise risk within their specific tenancy period</li>
-            <li><span class="obj-n">5</span>Deliver all outputs through an interactive web map</li>
-        </ul>
+
+<!-- Objectives -->
+<div class="section" id="objective">
+    <span class="section-label" style="margin-top: 28px;">Objectives</span>
+    <ul class="obj-list">
+        <li><span class="obj-n">1</span>Predict neighbourhood noise levels up to 12 months ahead for every 50×50 metre grid block across New York City</li>
+        <li><span class="obj-n">2</span>Decompose each prediction into plain‑language noise source contributions using SHAP (construction, traffic, baseline activity)</li>
+        <li><span class="obj-n">3</span>Present noise level predictions and dominant noise sources as human‑readable labels accessible to non‑technical users</li>
+        <li><span class="obj-n">4</span>Provide renter‑specific tools to assess noise risk within their specific tenancy period, including financial impact estimates</li>
+        <li><span class="obj-n">5</span>Deliver all outputs through an interactive web map</li>
+    </ul>
 </div>
-        <!-- Related Works -->
-        <div class="section" id="Related">
-        <span class="section-label" style="margin-top: 28px;">Related Works</span>
-        <div class="related-list" >
-            <div class="related-item" >
-                <div class="related-name">HowLoud</div>
-                <div class="related-desc">Provides a location-based Soundscore derived from modelled environmental noise sources.</div>
-            </div>
-            <div class="related-item">
-                <div class="related-name">NYC Noise Complaint Map</div>
-                <div class="related-desc">Visualises compiled 311 noise complaint data across NYC neighbourhoods as a historical reference.</div>
-            </div>
-            <div class="related-item">
-                <div class="related-name">SONYC (NYU)</div>
-                <div class="related-desc">Uses a network of acoustic sensors and machine learning to monitor and classify urban noise sources in real time across New York City.</div>
-            </div>
+
+<!-- Related Works -->
+<div class="section" id="Related">
+    <span class="section-label" style="margin-top: 28px;">Related Works</span>
+    <div class="related-list">
+        <div class="related-item">
+            <div class="related-name">HowLoud</div>
+            <div class="related-desc">Provides a location-based Soundscore derived from modelled environmental noise sources.</div>
         </div>
-        <div class="related-gap">These existing works focus on current or historical noise conditions. None provide forward-looking predictions, source-level attribution via explainable AI or renter-specific decision tools, the gaps this project addresses.</div>
-
-    </div>
-    </div>
-
-    <!-- PROPOSED APPROACH -->
-    <div class="section" id="approach">
-        <span class="section-label">Proposed Approach</span>
-
-        <div class="sub-label">Data Processing</div>
-        <div class="pipeline">
-
-            <div class="step">
-                <div class="step-left"><div class="step-dot">1</div><div class="step-line"></div></div>
-                <div class="step-content">
-                    <div class="step-title">Data Ingestion</div>
-                    <div class="step-desc">Raw data from five open sources is ingested and read into a consistent format using Pandas. Inputs include construction permit filings, traffic counts, zoning data, noise complaints, and SONYC sensor readings.</div>
-                </div>
-            </div>
-
-            <div class="step">
-                <div class="step-left"><div class="step-dot">2</div><div class="step-line"></div></div>
-                <div class="step-content">
-                    <div class="step-title">Preprocessing</div>
-                    <div class="step-desc">Raw data is cleaned and standardised into a consistent format compatible with the spatial processing and modelling pipeline.</div>
-                </div>
-            </div>
-
-            <div class="step">
-                <div class="step-left"><div class="step-dot">3</div><div class="step-line"></div></div>
-                <div class="step-content">
-                    <div class="step-title">Spatial-Temporal Snapping</div>
-                    <div class="step-desc">GeoPandas is applied to snap all data sources to a standardised 200×200 metre grid aggregated by month, mapping every complaint, permit, and sensor reading to a unified grid matrix.</div>
-                </div>
-            </div>
-
-            <div class="step">
-                <div class="step-left"><div class="step-dot">4</div><div class="step-line"></div></div>
-                <div class="step-content">
-                    <div class="step-title">XGBoost Model Training</div>
-                    <div class="step-desc">An XGBoost regression model is trained on the historical matrix to learn the relationship between urban activity inputs and actual decibel levels. The model then generates 12-month predictions using approved future permits and seasonal traffic projections as forward-looking inputs.</div>
-                </div>
-            </div>
-
-            <div class="step">
-                <div class="step-left"><div class="step-dot">5</div></div>
-                <div class="step-content">
-                    <div class="step-title">SHAP Attribution</div>
-                    <div class="step-desc">SHAP is applied to decompose each prediction into the exact decibel contribution of each noise source including traffic, construction and baseline urban activity and surfaced as human-readable badges.</div>
-                </div>
-            </div>
-
+        <div class="related-item">
+            <div class="related-name">NYC Noise Complaint Map</div>
+            <div class="related-desc">Visualises compiled 311 noise complaint data across NYC neighbourhoods as a historical reference.</div>
         </div>
-
-        <div class="sub-label">Data Visualisation</div>
-        <p>
-            The output is displayed through an interactive map built in Streamlit and PyDeck. Grid Blocks are color coded by predicted noise level and users can click any grid to view SHAP source breakdown alongside renter specific tools including a noise prediction timeline, lease overlap calculator and neighbourhood comparison.
-        </p>
-    </div>
-
-    <!-- DATA SOURCES -->
-    <div class="section" id="data">
-        <span class="section-label">Data Sources</span>
-        <table>
-            <thead>
-                <tr>
-                    <th>Source</th>
-                    <th>What it provides</th>
-                    <th>Used for</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>NYC DOB Permit Filings</td>
-                    <td>Construction permit type, location, approval and start date</td>
-                    <td>Forward-looking noise predictor</td>
-                </tr>
-                <tr>
-                    <td>NYC DOT Traffic Counts</td>
-                    <td>Monthly vehicle counts classified by vehicle type</td>
-                    <td>Traffic volume predictor</td>
-                </tr>
-                <tr>
-                    <td>NYC MapPLUTO</td>
-                    <td>Parcel-level zoning, land use, area, and floor classification</td>
-                    <td>Baseline activity predictor</td>
-                </tr>
-                <tr>
-                    <td>NYC 311 Complaints</td>
-                    <td>Geo-located noise complaint records since 2010, categorised by type</td>
-                    <td>Noise proxy where no sensor exists</td>
-                </tr>
-                <tr>
-                    <td>SONYC Sensor Network</td>
-                    <td>Continuous dB readings from 55 NYC sensors since 2016</td>
-                    <td>Ground truth target variable</td>
-                </tr>
-                <tr>
-                    <td>OpenStreetMap</td>
-                    <td>Road network geometry and road type classification</td>
-                    <td>Road proximity predictor</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- FEATURES -->
-    <div class="section" id="features">
-        <span class="section-label">Features</span>
-        <div class="features">
-            <div class="feat">
-                <div class="feat-name">Prediction Map</div>
-                <div class="feat-desc">Colour-coded 200×200m grids with current and monthly time toggle</div>
-            </div>
-            <div class="feat">
-                <div class="feat-name">Noise Source Badges</div>
-                <div class="feat-desc">Construction, Traffic, Baseline labels derived from SHAP attribution per grid</div>
-            </div>
-            <div class="feat">
-                <div class="feat-name">Noise Timeline</div>
-                <div class="feat-desc">Line chart showing predicted noise trajectory across the 12 months forecast window</div>
-            </div>
-            <div class="feat">
-                <div class="feat-name">Lease Overlap Calculator</div>
-                <div class="feat-desc">Enter move in date and lease length to highlight predicted noisy months</div>
-            </div>
-            <div class="feat">
-                <div class="feat-name">Neighbourhood Comparison</div>
-                <div class="feat-desc">Side-by-side noise profiling of two addresses across all prediction features</div>
-            </div>
-            <div class="feat">
-                <div class="feat-name">Confidence Indicator</div>
-                <div class="feat-desc">High, Medium, Low reliability rating based on sensor and permit data availability</div>
-            </div>
+        <div class="related-item">
+            <div class="related-name">SONYC (NYU)</div>
+            <div class="related-desc">Uses a network of acoustic sensors and machine learning to monitor and classify urban noise sources in real time across New York City.</div>
         </div>
     </div>
+    <div class="related-gap">
+        These existing works focus on current or historical noise conditions. None provide forward‑looking predictions, source‑level attribution via explainable AI, or renter‑specific decision tools—the gaps this project addresses.
+    </div>
+</div>
+
+<!-- PROPOSED APPROACH -->
+<div class="section" id="approach">
+    <span class="section-label">Proposed Approach</span>
+
+
+    <div class="sub-label">Data Processing</div>
+    <div class="pipeline">
+
+        <div class="step">
+            <div class="step-left"><div class="step-dot">1</div><div class="step-line"></div></div>
+            <div class="step-content">
+                <div class="step-title">Data Ingestion</div>
+                <div class="step-desc">Raw data from multiple open sources is ingested and read into a consistent format using Pandas. Inputs include construction permits, traffic counts, zoning data, noise complaints, subway activity, nightlife locations, and SONYC sensor readings.</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-left"><div class="step-dot">2</div><div class="step-line"></div></div>
+            <div class="step-content">
+                <div class="step-title">Preprocessing</div>
+                <div class="step-desc">Raw data is cleaned and standardised into a consistent format compatible with the spatial processing and modelling pipeline.</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-left"><div class="step-dot">3</div><div class="step-line"></div></div>
+            <div class="step-content">
+                <div class="step-title">Spatial-Temporal Snapping</div>
+                <div class="step-desc">GeoPandas is applied to snap all data sources to a standardised 50×50 metre grid aggregated by month, mapping every complaint, permit, and sensor reading to a unified grid matrix.</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-left"><div class="step-dot">4</div><div class="step-line"></div></div>
+            <div class="step-content">
+                <div class="step-title">XGBoost Model Training</div>
+                <div class="step-desc">An XGBoost regression model is trained on the historical matrix to learn the relationship between urban activity inputs and actual decibel levels. The model then generates 12‑month predictions using future permits, seasonal traffic projections, subway schedules, and nightlife patterns.</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-left"><div class="step-dot">5</div><div class="step-line"></div></div>
+            <div class="step-content">
+                <div class="step-title">SHAP Attribution</div>
+                <div class="step-desc">SHAP is applied to break each prediction into clear, plain‑language noise source contributions: construction, traffic, and everyday neighbourhood activity.</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-left"><div class="step-dot">6</div></div>
+            <div class="step-content">
+                <div class="step-title">Confidence Scoring</div>
+                <div class="step-desc">Each grid block receives a High, Medium, or Low confidence rating based on sensor coverage, permit completeness, and historical consistency.</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="sub-label">Data Visualisation</div>
+    <p>
+        The output is displayed through an interactive map built in Streamlit and PyDeck. Grid blocks are colour‑coded by predicted noise level, and users can click any grid to view SHAP source breakdown, confidence rating, a noise timeline, lease overlap calculator with financial impact estimate, and neighbourhood comparison tools. Users may also input their floor level to receive an adjusted noise estimate.
+    </p>
+</div>
+
+<!-- DATA SOURCES -->
+<div class="section" id="data">
+    <span class="section-label">Data Sources</span>
+    <table>
+        <thead>
+            <tr>
+                <th>Source</th>
+                <th>What it provides</th>
+                <th>Used for</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>NYC DOB Permit Filings</td>
+                <td>Construction permit type, location, approval and start date</td>
+                <td>Forward‑looking construction noise predictor</td>
+            </tr>
+            <tr>
+                <td>NYC DOT Traffic Counts</td>
+                <td>Monthly vehicle counts classified by vehicle type</td>
+                <td>Traffic volume predictor</td>
+            </tr>
+            <tr>
+                <td>MTA Subway GTFS & Station Data</td>
+                <td>Train frequency, station proximity, line schedules</td>
+                <td>Subway‑related transient noise predictor</td>
+            </tr>
+            <tr>
+                <td>NYC Nightlife/Open Data</td>
+                <td>Locations of bars, clubs, late‑night venues</td>
+                <td>Night‑time human activity noise predictor</td>
+            </tr>
+            <tr>
+                <td>NYC MapPLUTO</td>
+                <td>Parcel‑level zoning, land use, area, and floor classification</td>
+                <td>Baseline activity predictor</td>
+            </tr>
+            <tr>
+                <td>NYC 311 Complaints</td>
+                <td>Geo‑located noise complaint records since 2010</td>
+                <td>Noise proxy where no sensor exists</td>
+            </tr>
+            <tr>
+                <td>SONYC Sensor Network</td>
+                <td>Continuous dB readings from 55 NYC sensors since 2016</td>
+                <td>Ground truth target variable</td>
+            </tr>
+            <tr>
+                <td>OpenStreetMap</td>
+                <td>Road network geometry and road type classification</td>
+                <td>Road proximity predictor</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- FEATURES -->
+<div class="section" id="features">
+    <span class="section-label">Features</span>
+    <div class="features">
+        <div class="feat">
+            <div class="feat-name">Prediction Map</div>
+            <div class="feat-desc">Colour‑coded 50×50m grids with current and monthly time toggle</div>
+        </div>
+        <div class="feat">
+            <div class="feat-name">Noise Source Badges</div>
+            <div class="feat-desc">Plain‑language SHAP labels showing contributions from construction, traffic, and baseline activity</div>
+        </div>
+        <div class="feat">
+            <div class="feat-name">Noise Timeline</div>
+            <div class="feat-desc">Line chart showing predicted noise trajectory across the 12‑month forecast window</div>
+        </div>
+        <div class="feat">
+            <div class="feat-name">Lease Overlap Calculator</div>
+            <div class="feat-desc">Highlights predicted noisy months and estimates financial impact (2% rent reduction per dB above 55)</div>
+        </div>
+        <div class="feat">
+            <div class="feat-name">Neighbourhood Comparison</div>
+            <div class="feat-desc">Side‑by‑side noise profiling of two addresses across all prediction features</div>
+        </div>
+        <div class="feat">
+            <div class="feat-name">Confidence Indicator</div>
+            <div class="feat-desc">High, Medium, Low reliability rating based on sensor and permit data availability</div>
+        </div>
+        <div class="feat">
+            <div class="feat-name">Floor‑Level Adjustment</div>
+            <div class="feat-desc">Higher floors may experience reduced street‑level noise; users can input floor level for adjusted estimates</div>
+        </div>
+    </div>
+</div>
 
 </div>
 </body>
