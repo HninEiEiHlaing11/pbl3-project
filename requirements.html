@@ -1,19 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Requirements Specification Document — NoiseMap NYC</title>
 
     <style>
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
             --bg: #ffffff;
@@ -28,23 +21,17 @@
             --accent-border: #99b4ff;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: Georgia, 'Times New Roman', serif;
             background: var(--bg);
             color: var(--text);
         }
 
-        /* ── NAV ── */
-
         nav {
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255,255,255,0.95);
             backdrop-filter: blur(8px);
             border-bottom: 1px solid var(--border);
             padding: 0 48px;
@@ -59,18 +46,11 @@
             font-size: 15px;
             font-weight: 800;
             color: var(--text);
-            letter-spacing: -0.01em;
         }
 
-        .nav-logo span {
-            color: var(--accent);
-        }
+        .nav-logo span { color: var(--accent); }
 
-        .nav-links {
-            display: flex;
-            gap: 28px;
-            align-items: center;
-        }
+        .nav-links { display: flex; gap: 28px; }
 
         .nav-links a {
             font-family: Arial, sans-serif;
@@ -81,65 +61,17 @@
             transition: color 0.15s;
         }
 
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        /* ── DROPDOWN ── */
-
-        .dropdown {
-            position: relative;
-        }
-
-        .dropbtn {
-            cursor: pointer;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: -100px;
-            background: white;
-            min-width: 220px;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 10px 0;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-        }
-
-        .dropdown-content a {
-            display: block;
-            padding: 10px 16px;
-            font-size: 13px;
-            color: var(--text2);
-            text-decoration: none;
-            font-family: Arial, sans-serif;
-        }
-
-        .dropdown-content a:hover {
-            background: var(--bg2);
-            color: var(--accent);
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        /* ── LAYOUT ── */
+        .nav-links a:hover { color: var(--accent); }
 
         .wrap {
-            max-width: 780px;
+            max-width: 820px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* ── HERO ── */
-
         .hero {
             padding: 64px 0 48px;
             border-bottom: 1px solid var(--border);
-            margin-bottom: 0;
         }
 
         .hero-tag {
@@ -153,17 +85,13 @@
 
         .hero h1 {
             font-family: Arial, sans-serif;
-            font-size: 40px;
+            font-size: 34px;
             font-weight: 800;
-            letter-spacing: -0.02em;
             color: var(--text);
             margin-bottom: 6px;
-            line-height: 1.1;
         }
 
-        .hero h1 span {
-            color: var(--accent);
-        }
+        .hero h1 span { color: var(--accent); }
 
         .hero-sub {
             font-size: 14px;
@@ -171,16 +99,13 @@
             font-family: monospace;
         }
 
-        /* ── SECTION ── */
-
         .section {
-            padding: 28px 0 28px;
-            scroll-margin-top: 70px;
+            padding: 40px 0;
         }
 
         .section-label {
             font-family: monospace;
-            font-size: 10px;
+            font-size: 11px;
             letter-spacing: 0.14em;
             text-transform: uppercase;
             color: var(--accent);
@@ -190,241 +115,332 @@
             display: block;
         }
 
-        h3 {
+        h2 {
             font-family: Arial, sans-serif;
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--text);
-            margin: 24px 0 12px;
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 16px;
         }
 
-        p,
-        li {
+        h3 {
+            font-family: Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            margin: 18px 0 10px;
+        }
+
+        p, li {
             font-size: 15px;
             color: var(--text2);
-            line-height: 1.9;
+            line-height: 1.85;
             margin-bottom: 14px;
             text-align: justify;
         }
 
-        ul {
-            padding-left: 20px;
-        }
-    </style>
+        ul { padding-left: 20px; }
 
+        .toc {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .toc a {
+            display: block;
+            font-size: 14px;
+            color: var(--accent);
+            text-decoration: none;
+            margin: 6px 0;
+        }
+
+        .toc a:hover { text-decoration: underline; }
+    </style>
 </head>
 
-<body id="top">
-
-    <!-- NAV -->
-    <nav>
-
-        <div class="nav-logo">
-            NoiseMap <span>NYC</span>
-        </div>
-
-        <div class="nav-links">
-
-            <!-- Proposal -->
-
-            <a href="proposal.html">
-                Proposal
-            </a>
-
-            <!-- Requirements -->
-
-            <div class="dropdown">
-
-                <a href="#top" class="dropbtn">
-                    Requirements
-                </a>
-
-                <div class="dropdown-content">
-
-                    <a href="#intro">
-                        1. Introduction
-                    </a>
-
-                    <a href="#user-req">
-                        2. User Requirements
-                    </a>
-
-                    <a href="#system-req">
-                        3. System Requirements
-                    </a>
-
-                    <a href="#evolution">
-                        4. System Evolution
-                    </a>
-
-                    <a href="#appendix-a">
-                        Appendix A
-                    </a>
-
-                    <a href="#appendix-b">
-                        Appendix B
-                    </a>
-
-                    <a href="#appendix-c">
-                        Appendix C
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </nav>
-
-
-
-    <!-- CONTENT -->
-
-    <div class="wrap">
-
-        <!-- HERO -->
-
-        <div class="hero">
-
-            <div class="hero-tag">
-                PBL3 · Group G
-            </div>
-
-            <h1>
-                Requirements Specification <span>Document</span>
-            </h1>
-
-            <div class="hero-sub">
-                NoiseMap NYC — System Requirements
-            </div>
-
-        </div>
-
-        <!-- 1 -->
-
-        <div class="section" id="intro">
-
-            <span class="section-label">
-                1. Introduction
-            </span>
-
-            <h3>1.1 Purpose</h3>
-            <p>...</p>
-
-            <h3>1.2 System Overview</h3>
-            <p>...</p>
-
-            <h3>1.3 Intended Audience</h3>
-            <p>...</p>
-
-            <h3>1.4 Scope</h3>
-            <p>...</p>
-
-        </div>
-
-        <!-- 2 -->
-
-        <div class="section" id="user-req">
-
-            <span class="section-label">
-                2. User Requirements Definition
-            </span>
-
-            <h3>2.1 Stakeholders</h3>
-            <p>...</p>
-
-            <h3>2.2 User Requirement Statements</h3>
-            <p>...</p>
-
-            <h3>2.3 Constraints</h3>
-            <p>...</p>
-
-        </div>
-
-        <!-- 3 -->
-
-        <div class="section" id="system-req">
-
-            <span class="section-label">
-                3. System Requirements Specification
-            </span>
-
-            <h3>3.1 Functional Requirements</h3>
-            <p>...</p>
-
-            <h3>3.2 Non-Functional Requirements</h3>
-            <p>...</p>
-
-            <h3>3.3 Domain Requirements</h3>
-            <p>...</p>
-
-        </div>
-
-        <!-- 4 -->
-
-        <div class="section" id="evolution">
-
-            <span class="section-label">
-                4. System Evolution
-            </span>
-
-            <h3>4.1 Current Assumptions</h3>
-            <p>...</p>
-
-            <h3>4.2 Anticipated Changes</h3>
-            <p>...</p>
-
-        </div>
-
-        <!-- APPENDIX A -->
-
-        <div class="section" id="appendix-a">
-
-            <span class="section-label">
-                Appendix A — Requirements Elicitation
-            </span>
-
-            <h3>A.1 Elicitation Methods</h3>
-            <p>...</p>
-
-            <h3>A.2 Survey Summary</h3>
-            <p>...</p>
-
-            <h3>A.3 Interview Summaries</h3>
-            <p>...</p>
-
-            <h3>A.4 Key Findings</h3>
-            <p>...</p>
-
-        </div>
-
-        <!-- APPENDIX B -->
-
-        <div class="section" id="appendix-b">
-
-            <span class="section-label">
-                Appendix B — Survey Questions
-            </span>
-
-            <p>...</p>
-
-        </div>
-
-        <!-- APPENDIX C -->
-
-        <div class="section" id="appendix-c">
-
-            <span class="section-label">
-                Appendix C — Interview Guide
-            </span>
-
-            <p>...</p>
-
-        </div>
-
+<body>
+
+<nav>
+    <div class="nav-logo">NoiseMap <span>NYC</span></div>
+    <div class="nav-links">
+        <a href="index.html">Proposal</a>
+        <a href="requirements.html">Requirements</a>
+    </div>
+</nav>
+
+<div class="wrap">
+
+    <div class="hero">
+        <div class="hero-tag">PBL3 · Group G</div>
+        <h1>Requirements Specification <span>Document</span></h1>
+        <div class="hero-sub">NoiseMap NYC — System Requirements</div>
     </div>
 
-</body>
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc">
+        <a href="#intro">1. Introduction</a>
+        <a href="#user-req">2. User Requirements Definition</a>
+        <a href="#system-req">3. System Requirements Specification</a>
+        <a href="#evolution">4. System Evolution</a>
+        <a href="#appendix-a">Appendix A — Requirements Elicitation</a>
+        <a href="#appendix-b">Appendix B — Survey Questions</a>
+        <a href="#appendix-c">Appendix C — Interview Guide</a>
+    </div>
 
+    <!-- 1. INTRODUCTION -->
+    <div class="section" id="intro">
+        <span class="section-label">1. Introduction</span>
+
+        <h3>1.1 Purpose</h3>
+        <p>The purpose of this document is to define the user requirements and system requirements for NoiseMap NYC, a predictive noise‑mapping system designed for apartment renters in New York City.</p>
+        <p>The system is needed because renters typically evaluate neighborhoods based only on current noise conditions, which do not reflect how noise levels may change due to future construction, traffic variations, or seasonal activity. Chronic exposure to noise above 55 dB affects health and reduces rental value, making noise a significant decision factor. NoiseMap NYC addresses this need by offering forward‑looking, data‑driven noise predictions.</p>
+
+        <h3>1.2 System Overview</h3>
+        <p>NoiseMap NYC is a web‑based system that predicts neighborhood noise levels 6 to 12 months into the future for every 50 x 50 meter grid across New York City.</p>
+        <p>The system integrates multiple urban datasets—including SONYC sensor readings, construction permits, traffic counts, zoning data, and OpenStreetMap features—and processes them through a machine learning model.</p>
+        <p>To support transparency and align with the textbook’s emphasis on clear system definition, the system provides explainable outputs, identifying the contribution of construction, traffic, and baseline urban activity to each prediction.</p>
+        <p>The final output is delivered through an interactive map interface that displays predicted noise levels, source breakdowns, and a confidence indicator.</p>
+
+        <h3>1.3 Intended Audience</h3>
+        <ul>
+            <li><strong>Apartment renters:</strong> Users evaluating unfamiliar neighbourhoods and seeking reliable, forward‑looking information about noise conditions before signing a lease.</li>
+            <li><strong>Urban planners and city officials:</strong> Need predictive insights into how construction activity, traffic patterns, and zoning changes will affect neighbourhood soundscapes.</li>
+            <li><strong>First‑time renters:</strong> Require understandable noise information to support housing decisions.</li>
+            <li><strong>Development team:</strong> Responsible for developing and maintaining the system while managing requirement changes.</li>
+        </ul>
+
+        <h3>1.4 Scope</h3>
+        <ul>
+            <li>Provide predicted neighbourhood noise levels based on user-input addresses</li>
+            <li>Predict future decibel (dB) levels for selected time and lease periods</li>
+            <li>Generate temporal noise forecast visualisations through interactive line graphs</li>
+            <li>Analyse the contribution of major noise sources using SHAP</li>
+            <li>Display prediction confidence indicators</li>
+            <li>Enable parallel comparison of multiple neighbourhoods</li>
+            <li>Calculate noise exposure overlap during the lease period</li>
+            <li>Provide estimated variations in noise exposure according to apartment floor level</li>
+        </ul>
+
+        <h3>System will NOT do</h3>
+        <ul>
+            <li>Not fully predict unpredictable human activities</li>
+            <li>Not provide real-time indoor noise monitoring</li>
+            <li>Not guarantee future noise outcomes</li>
+        </ul>
+    </div>
+
+    <!-- 2. USER REQUIREMENTS -->
+    <div class="section" id="user-req">
+        <span class="section-label">2. User Requirements Definition</span>
+
+        <h3>2.1 Stakeholders</h3>
+
+        <h4>Primary Users</h4>
+        <ul>
+            <li><strong>Apartment Renters & First-time Renters</strong><br>
+                Goal: Understand future noise conditions before signing a lease<br>
+                Concerns: Accuracy, simplicity, plain language
+            </li>
+        </ul>
+
+        <h4>Secondary Users</h4>
+        <ul>
+            <li><strong>Urban Researchers</strong><br>
+                Goal: Understand neighbourhood noise patterns<br>
+                Concerns: Data transparency, model reliability
+            </li>
+        </ul>
+
+        <h4>External Data Providers</h4>
+        <ul>
+            <li>NYC Department of Buildings</li>
+            <li>NYC Liquor Activity Licenses</li>
+            <li>NYC DOT Traffic Counts</li>
+            <li>SONYC Acoustic Sensor Network</li>
+        </ul>
+
+        <h4>Internal Stakeholders</h4>
+        <ul>
+            <li><strong>Development Team</strong><br>
+                Goal: Build system within scope and schedule<br>
+                Concerns: Clear requirements, feasibility, data availability
+            </li>
+        </ul>
+
+        <h3>2.2 User Requirement Statements</h3>
+        <ul>
+            <li>UR1. System shall allow a user to enter an address and receive noise predictions up to 12 months.</li>
+            <li>UR2. System shall display predictions in simple language.</li>
+            <li>UR3. System shall identify dominant noise sources using badges.</li>
+            <li>UR4. System shall allow users to enter lease duration and view noise changes.</li>
+            <li>UR5. System shall allow comparison of two neighbourhoods.</li>
+            <li>UR6. System shall indicate prediction reliability.</li>
+            <li>UR7. System should communicate temporary noise (e.g., construction end date).</li>
+            <li>UR8. System will rely only on public open-source data.</li>
+            <li>UR9. System should reference WHO 55 dB health thresholds.</li>
+            <li>UR10. System shall allow floor-level noise adjustment.</li>
+            <li>UR11. System shall estimate financial impact of noise above 55 dB.</li>
+        </ul>
+
+        <h3>2.3 Constraints</h3>
+
+        <h4>Operational Constraints</h4>
+        <ul>
+            <li>Web-based application</li>
+            <li>Accessible on desktop and mobile</li>
+            <li>No login required</li>
+            <li>No installation or plugins required</li>
+            <li>Free to use</li>
+        </ul>
+
+        <h4>Data Constraints</h4>
+        <ul>
+            <li>Only public open data sources</li>
+            <li>No personal data stored</li>
+            <li>Predictions not guaranteed</li>
+            <li>Confidence indicator required</li>
+            <li>311 complaint bias acknowledged</li>
+            <li>All data sources must be attributed</li>
+        </ul>
+
+        <h4>Scope Constraints</h4>
+        <ul>
+            <li>No real-time monitoring</li>
+            <li>NYC only</li>
+            <li>No indoor noise estimates</li>
+            <li>12-month prediction limit</li>
+            <li>No neighbour noise prediction</li>
+        </ul>
+    </div>
+    <!-- 3. SYSTEM REQUIREMENTS -->
+    <div class="section" id="system-req">
+        <span class="section-label">3. System Requirements Specification</span>
+
+        <h3>3.1 Functional Requirements</h3>
+        <ul>
+            <li>The system shall display current and future predicted noise levels for any user‑entered address.</li>
+            <li>The system shall compare multiple properties or addresses simultaneously.</li>
+            <li>The system shall visualise noise levels using intuitive methods such as heatmaps or colour scales.</li>
+            <li>The system shall identify and display sources of noise (traffic, construction, nightlife, baseline activity).</li>
+            <li>The system shall allow filtering based on user‑defined noise tolerance levels.</li>
+            <li>The system shall provide optional notifications for unusual or extreme noise changes.</li>
+            <li>The system shall include explanations of technical data (e.g., decibels, health thresholds) in simple terms.</li>
+        </ul>
+
+        <h3>3.2 Non‑Functional Requirements</h3>
+
+        <h4>Product Requirements</h4>
+        <ul>
+            <li>Noise level labels should present moderate noise neutrally, as some users prefer ambient noise.</li>
+            <li>The system must clearly communicate why noise matters before users explore the map.</li>
+            <li>The system must clarify what it can and cannot predict (e.g., cannot predict neighbour noise).</li>
+            <li>Predictions must distinguish between sensor‑based and complaint‑based estimates.</li>
+            <li>Temporary noise (construction) must be distinguished from permanent noise (traffic).</li>
+        </ul>
+
+        <h4>Organisational Requirements</h4>
+        <ul>
+            <li>The system must be built using Python, Pandas, GeoPandas, XGBoost, SHAP, Streamlit, and PyDeck.</li>
+            <li>The system covers New York City only.</li>
+            <li>The prediction horizon is fixed at 12 months.</li>
+            <li>The grid resolution is fixed at 50×50 metres.</li>
+            <li>Model validation must be performed using a held‑out historical test set.</li>
+        </ul>
+
+        <h4>External Requirements</h4>
+        <ul>
+            <li>The system shall support user trust by referencing research studies and verified feedback.</li>
+            <li>The system shall acknowledge biases in 311 complaint data.</li>
+            <li>The system must not present data in ways that identify individual residents.</li>
+        </ul>
+
+        <h3>3.3 Domain Requirements</h3>
+        <p>
+            Domain requirements include the constraints and rules imposed by the nature of urban noise modelling:
+        </p>
+        <ul>
+            <li>Noise propagation varies by building geometry, street width, and elevation.</li>
+            <li>Construction permits may be updated or cancelled, affecting prediction accuracy.</li>
+            <li>Traffic patterns follow seasonal and weekday/weekend cycles.</li>
+            <li>Sensor coverage is uneven across NYC, requiring proxy data in low‑coverage areas.</li>
+        </ul>
+    </div>
+
+    <!-- 4. SYSTEM EVOLUTION -->
+    <div class="section" id="evolution">
+        <span class="section-label">4. System Evolution</span>
+
+        <h3>4.1 Current Assumptions</h3>
+        <ul>
+            <li>Noise is not always the top rental decision factor.</li>
+            <li>Complaint‑based datasets may be biased and incomplete.</li>
+            <li>Users have different tolerance levels; “quiet” is not universally preferred.</li>
+            <li>Night‑time noise is more impactful than daytime noise.</li>
+        </ul>
+
+        <h3>4.2 Anticipated Changes</h3>
+        <ul>
+            <li>Future versions may include time‑of‑day predictions.</li>
+            <li>Nightlife datasets may be expanded for better accuracy.</li>
+            <li>Improved insulation or building‑level data may allow indoor noise estimates.</li>
+            <li>Expansion to other cities may be possible once NYC version is stable.</li>
+        </ul>
+    </div>
+
+    <!-- APPENDIX A -->
+    <div class="section" id="appendix-a">
+        <span class="section-label">Appendix A — Requirements Elicitation</span>
+
+        <h3>A.1 Elicitation Methods</h3>
+        <ul>
+            <li>Survey (28 respondents)</li>
+            <li>Interviews (12 participants)</li>
+            <li>Expert interview with ISSE professor</li>
+        </ul>
+
+        <h3>A.2 Survey Summary</h3>
+        <ul>
+            <li>Most renters rely on a single physical visit to assess noise.</li>
+            <li>Noise is moderately important but often underestimated.</li>
+            <li>50% unaware of 55 dB health risks.</li>
+            <li>Common impacts: sleep disruption, stress, concentration issues.</li>
+        </ul>
+
+        <h3>A.3 Interview Summaries</h3>
+        <ul>
+            <li>Unexpected noise sources include traffic, construction, nightlife, neighbours.</li>
+            <li>Users want simple visualisations and clear “good vs bad” indicators.</li>
+            <li>Trust increases with transparent data sources.</li>
+        </ul>
+
+        <h3>A.4 Key Findings</h3>
+        <ul>
+            <li>Single visits are insufficient to assess noise conditions.</li>
+            <li>Noise is frequently underestimated before moving in.</li>
+            <li>Night‑time noise is the most critical factor.</li>
+            <li>Users prefer heatmaps and simple noise scores.</li>
+            <li>Expert validation confirms need for temporary vs permanent noise distinction.</li>
+        </ul>
+    </div>
+
+    <!-- APPENDIX B -->
+    <div class="section" id="appendix-b">
+        <span class="section-label">Appendix B — Survey Questions</span>
+        <p>
+            
+        </p>
+    </div>
+
+    <!-- APPENDIX C -->
+    <div class="section" id="appendix-c">
+        <span class="section-label">Appendix C — Interview Guide</span>
+        <p>
+            
+        </p>
+    </div>
+
+</div>
+
+</body>
 </html>
