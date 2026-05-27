@@ -269,133 +269,129 @@
         <div class="hero-sub">NoiseMap NYC — System Requirements</div>
     </div>
 
-    <!-- 1. INTRODUCTION -->
-    <div class="section" id="intro">
-        <span class="section-label">1. Introduction</span>
+  <div class="section" id="intro">
+    <span class="section-label">1. Introduction</span>
 
-        <h3>1.1 Purpose</h3>
-        <p>The purpose of this document is to define the user requirements and system requirements for NoiseMap NYC, a predictive noise‑mapping system designed for apartment renters in New York City.</p>
-        <p>The system is needed because renters typically evaluate neighborhoods based only on current noise conditions, which do not reflect how noise levels may change due to future construction, traffic variations, or seasonal activity. Chronic exposure to noise above 55 dB affects health and reduces rental value, making noise a significant decision factor. NoiseMap NYC addresses this need by offering forward‑looking, data‑driven noise predictions.</p>
+    <h3>1.1 Purpose</h3>
+    <p>The purpose of this document is to define the user requirements and system requirements for NoiseMap NYC, a predictive noise‑mapping system designed for apartment renters in New York City.</p>
+    <p>The system is needed because renters typically evaluate neighborhoods based only on current noise conditions, which do not reflect how noise levels may change due to future construction, traffic variations, or seasonal activity. Chronic exposure to noise above 55 dB affects health and reduces rental value, making noise a significant decision factor. NoiseMap NYC addresses this need by offering forward‑looking, data‑driven noise predictions.</p>
 
-        <h3>1.2 System Overview</h3>
-        <p>NoiseMap NYC is a web‑based system that predicts neighborhood noise levels 6 to 12 months into the future for every 50 x 50 meter grid across New York City.</p>
-        <p>The system integrates multiple urban datasets—including SONYC sensor readings, construction permits, traffic counts, zoning data, and OpenStreetMap features—and processes them through a machine learning model.</p>
-        <p>To support transparency and align with the textbook’s emphasis on clear system definition, the system provides explainable outputs, identifying the contribution of construction, traffic, and baseline urban activity to each prediction.</p>
-        <p>The final output is delivered through an interactive map interface that displays predicted noise levels, source breakdowns, and a confidence indicator.</p>
+    <h3>1.2 System Overview</h3>
+    <p>NoiseMap NYC is a web‑based system that predicts neighborhood noise levels up to 12 months into the future for every 50 x 50 meter grid across New York City.</p>
+    <p>The system integrates multiple urban datasets to generate forward-looking noise predictions with source-level attribution and confidence indicators, delivered through an interactive web-based map.</p>
 
-        <h3>1.3 Intended Audience</h3>
-        <ul>
-            <li><strong>Apartment renters:</strong> Users evaluating unfamiliar neighbourhoods and seeking reliable, forward‑looking information about noise conditions before signing a lease.</li>
-            <li><strong>Urban planners and city officials:</strong> Need predictive insights into how construction activity, traffic patterns, and zoning changes will affect neighbourhood soundscapes.</li>
-            <li><strong>First‑time renters:</strong> Require understandable noise information to support housing decisions.</li>
-            <li><strong>Development team:</strong> Responsible for developing and maintaining the system while managing requirement changes.</li>
-        </ul>
+    <h3>1.3 Intended Audience</h3>
+    <p>Apartment renters: Users evaluating unfamiliar neighbourhoods and seeking reliable, forward‑looking information about noise conditions before signing a lease.</p>
+    <p>Urban planners and city officials: Stakeholders need predictive insights into how construction activity, traffic patterns, and zoning changes will affect neighbourhood soundscapes over time.</p>
+    <p>First apartment renter: Users with limited rental experience who require understandable noise information to support housing decisions.</p>
+    <p>Development team: Software engineering members responsible for developing and maintaining the system while managing requirement changes.</p>
 
-        <h3>1.4 Scope</h3>
-        <ul>
-            <li>Provide predicted neighbourhood noise levels based on user-input addresses</li>
-            <li>Predict future decibel (dB) levels for selected time and lease periods</li>
-            <li>Generate temporal noise forecast visualisations through interactive line graphs</li>
-            <li>Analyse the contribution of major noise sources using SHAP</li>
-            <li>Display prediction confidence indicators</li>
-            <li>Enable parallel comparison of multiple neighbourhoods</li>
-            <li>Calculate noise exposure overlap during the lease period</li>
-            <li>Provide estimated variations in noise exposure according to apartment floor level</li>
-        </ul>
+    <h3>1.4 Scope</h3>
+    <ul>
+        <li>Provide predicted neighbourhood noise levels based on user-input addresses</li>
+        <li>Predict future decibel (dB) levels for selected time and lease periods</li>
+        <li>Generate temporal noise forecast visualisations through interactive line graphs</li>
+        <li>Analyse the contribution of major noise sources through plain-language badges and interpretations</li>
+        <li>Display prediction confidence indicators</li>
+        <li>Enable parallel comparison of multiple neighbourhoods and their projected noise conditions</li>
+        <li>Calculate noise exposure overlap during the lease period</li>
+        <li>Provide estimated variations in noise exposure according to apartment floor level</li>
+    </ul>
 
-        <h3>System will NOT do</h3>
-        <ul>
-            <li>Not fully predict unpredictable human activities</li>
-            <li>Not provide real-time indoor noise monitoring</li>
-            <li>Not guarantee future noise outcomes</li>
-        </ul>
-    </div>
+    <h4>System will not do</h4>
+    <ul>
+        <li>The system will not fully predict unpredictable human activities</li>
+        <li>The system will not provide real-time indoor noise monitoring inside private residence</li>
+        <li>The system will not guarantee future noise outcomes, as predictions depend on available datasets and approved public information</li>
+    </ul>
+</div>
 
-    <!-- 2. USER REQUIREMENTS -->
-    <div class="section" id="user-req">
-        <span class="section-label">2. User Requirements Definition</span>
+<div class="section" id="user-req">
+    <span class="section-label">2. User Requirements Definition</span>
 
-        <h3>2.1 Stakeholders</h3>
+    <h3>2.1 Stakeholders</h3>
 
-        <h4>Primary Users</h4>
-        <ul>
-            <li><strong>Apartment Renters & First-time Renters</strong><br>
-                Goal: Understand future noise conditions before signing a lease<br>
-                Concerns: Accuracy, simplicity, plain language
-            </li>
-        </ul>
+    <h4>Primary Users</h4>
+    <p>1.Apartment Renters and First time Renters</p>
+    <ul>
+        <li>Goal: Understand future noise level conditions before signing a lease and access that information without prior technical knowledge</li>
+        <li>Concerns: Accuracy and integrity of predictions, simplicity of output, plain language presentation</li>
+    </ul>
 
-        <h4>Secondary Users</h4>
-        <ul>
-            <li><strong>Urban Researchers</strong><br>
-                Goal: Understand neighbourhood noise patterns<br>
-                Concerns: Data transparency, model reliability
-            </li>
-        </ul>
+    <h4>Secondary users</h4>
+    <p>1.Urban Researchers</p>
+    <ul>
+        <li>Goal: Understand neighbourhood noise patterns across New York City</li>
+        <li>Concerns: Data source transparency and model reliability</li>
+    </ul>
 
-        <h4>External Data Providers</h4>
-        <ul>
-            <li>NYC Department of Buildings</li>
-            <li>NYC Liquor Activity Licenses</li>
-            <li>NYC DOT Traffic Counts</li>
-            <li>SONYC Acoustic Sensor Network</li>
-        </ul>
+    <h4>External data provider</h4>
+    <p>1.NYC Department of Buildings</p>
+    <p>2.NYC Liquor Activity Active Licenses</p>
+    <p>3.NYC Department of transportation (Traffic count)</p>
+    <p>Goal: Data used appropriately and in compliance with terms of use</p>
+    <p>4.SONYC - NYC Acoustic Sensor Network</p>
+    <ul>
+        <li>Goal: Sensor data used accurately and within documented limitations</li>
+        <li>Concerns: Limited sensor coverage across the full city</li>
+    </ul>
 
-        <h4>Internal Stakeholders</h4>
-        <ul>
-            <li><strong>Development Team</strong><br>
-                Goal: Build system within scope and schedule<br>
-                Concerns: Clear requirements, feasibility, data availability
-            </li>
-        </ul>
+    <h4>Internal</h4>
+    <p>1.Development Team</p>
+    <ul>
+        <li>Goal: Build a working system within scope and on schedule</li>
+        <li>Concerns: Clear requirements, technical feasibility and data availability</li>
+    </ul>
 
-        <h3>2.2 User Requirement Statements</h3>
-        <ul>
-            <li>UR1. System shall allow a user to enter an address and receive noise predictions up to 12 months.</li>
-            <li>UR2. System shall display predictions in simple language.</li>
-            <li>UR3. System shall identify dominant noise sources using badges.</li>
-            <li>UR4. System shall allow users to enter lease duration and view noise changes.</li>
-            <li>UR5. System shall allow comparison of two neighbourhoods.</li>
-            <li>UR6. System shall indicate prediction reliability.</li>
-            <li>UR7. System should communicate temporary noise (e.g., construction end date).</li>
-            <li>UR8. System will rely only on public open-source data.</li>
-            <li>UR9. System should reference WHO 55 dB health thresholds.</li>
-            <li>UR10. System shall allow floor-level noise adjustment.</li>
-            <li>UR11. System shall estimate financial impact of noise above 55 dB.</li>
-        </ul>
+    <h3>2.2 User Requirement Statements</h3>
+    <p>The following statements define the services the system shall provide from the user's perspective.</p>
 
-        <h3>2.3 Constraints</h3>
+    <ul>
+        <li>UR1. The system shall allow a user to enter an address and receive a trend of noise prediction on neighborhood for the current period and up to 12 months.</li>
+        <li>UR2. The system shall display noise prediction in simple language so that a non-technical user can understand it without any technical knowledge.</li>
+        <li>UR3. The system shall identify and display the dominant source of predicted noise in a simple badge; indicating the primary source of noise is from construction, traffic or any urban activity nearby.</li>
+        <li>UR4. The system shall allow a user to enter their lease duration and display how the predicted noise timeline is expected to change over a user’s tenancy.</li>
+        <li>UR5. The system shall allow a user to compare predicted noise levels of two different neighborhoods side by side.</li>
+        <li>UR6. The system shall indicate how reliable each prediction is so that users can judge the weight of the information.</li>
+        <li>UR7. The system should communicate whether a predicted noise is temporary for example the known end date of a construction project or the traffic.</li>
+        <li>UR8. The system will rely on entirely publicly available open-source data; no data will be collected from users beyond their address input.</li>
+        <li>UR9. The system should clarify displayed noise levels by referencing established health thresholds such as the WHO 55 db guideline and its document effects on sleep and concentration.</li>
+        <li>UR10. The system shall allow a user to input their apartment floor level and receive an adjusted noise estimate reflecting vertical attenuation.</li>
+        <li>UR11. The system shall provide an estimated financial impact of predicted noise levels above 55 dB expressed as an approximate rental value reduction.</li>
+    </ul>
 
-        <h4>Operational Constraints</h4>
-        <ul>
-            <li>Web-based application</li>
-            <li>Accessible on desktop and mobile</li>
-            <li>No login required</li>
-            <li>No installation or plugins required</li>
-            <li>Free to use</li>
-        </ul>
+    <h3>2.3 Constraints</h3>
 
-        <h4>Data Constraints</h4>
-        <ul>
-            <li>Only public open data sources</li>
-            <li>No personal data stored</li>
-            <li>Predictions not guaranteed</li>
-            <li>Confidence indicator required</li>
-            <li>311 complaint bias acknowledged</li>
-            <li>All data sources must be attributed</li>
-        </ul>
+    <h4>Operational constraints</h4>
+    <ul>
+        <li>1. The system shall operate as a web-based application so that no software installation shall be required from the user.</li>
+        <li>2. The system shall be accessible on standard desktop and mobile browsers.</li>
+        <li>3. The system shall not require user registration or login to access noise predictions.</li>
+        <li>4. The system shall not require any software installation or browser plugin to function.</li>
+        <li>5. The system shall be accessible without payment or subscription; all core features shall be available at no cost to the user.</li>
+    </ul>
 
-        <h4>Scope Constraints</h4>
-        <ul>
-            <li>No real-time monitoring</li>
-            <li>NYC only</li>
-            <li>No indoor noise estimates</li>
-            <li>12-month prediction limit</li>
-            <li>No neighbour noise prediction</li>
-        </ul>
-    </div>
-    
-    <div class="section" id="system-req">
+    <h4>Data constraints</h4>
+    <ul>
+        <li>6. The system shall only use publicly available open data sources.</li>
+        <li>7. The system shall not store any personal information from users; address inputs shall not be stored after session ends.</li>
+        <li>8. The system shall not present predictions as guaranteed outcomes.</li>
+        <li>9. The system shall be accompanied by a confidence indicator reflecting data availability and reliability.</li>
+        <li>10. The system shall acknowledge that 311 complaint data may underrepresent noise in lower-income neighbourhoods and shall not use complaint data as the sole basis for any prediction.</li>
+        <li>11. The system shall clearly attribute all data sources displayed to the user so that predictions can be verified against their origin.</li>
+    </ul>
+
+    <h4>Scope constraints</h4>
+    <ul>
+        <li>12. The system shall not provide real-time noise monitoring, predictions are based on historical patterns and approved future permit data only.</li>
+        <li>13. The system is scoped to New York City only in its initial version and therefore predictions for other cities are outside scope.</li>
+        <li>14. The system shall not provide indoor noise level estimates, all predictions reflect outdoor street-level noise conditions only.</li>
+        <li>15. Predictions shall be limited to a maximum horizon of 12 months so forecasts beyond this period are outside scope.</li>
+        <li>16. The system shall not predict noise caused by individual neighbours, building insulation quality or other unpredictable human behaviour.</li>
+    </ul>
+</div>
+
+<div class="section" id="system-req">
     <span class="section-label">3. System Requirements Specification</span>
 
     <h3>3.1 Functional Requirements</h3>
@@ -429,24 +425,22 @@
         <li>NFR1. Noise level classifications shall present moderate noise as a neutral condition, acknowledging that some users actively prefer a degree of ambient noise.</li>
         <li>NFR2. The system shall communicate the significance of noise exposure to first-time users prior to their engagement with the map.</li>
         <li>NFR3. The system shall explicitly state that noise from neighbouring residents and building sound insulation quality are outside its predictive scope.</li>
-        <li>NFR4. The system shall differentiate between predictions derived from sensor data and those estimated from complaint proxy data, enabling users to assess prediction reliability accordingly.</li>
-        <li>NFR5. The system shall distinguish between temporary noise sources such as construction and permanent ones such as traffic in all user-facing outputs.</li>
     </ul>
 
     <h4>Organisational Requirements</h4>
     <ul>
-        <li>NFR6. The system shall be developed open source tools and frameworks only.</li>
-        <li>NFR7. The geographic scope of the system is limited to New York City in its initial version.</li>
-        <li>NFR8. The prediction horizon is fixed at a maximum of 12 months.</li>
-        <li>NFR9. The spatial resolution of the prediction grid is fixed at 50x50 metres.</li>
-        <li>NFR10. The predictive model shall be validated against a held-out historical test dataset prior to deployment.</li>
+        <li>NFR4. The system shall be developed using open source tools and frameworks only.</li>
+        <li>NFR5. The geographic scope of the system is limited to New York City in its initial version.</li>
+        <li>NFR6. The prediction horizon is fixed at a maximum of 12 months.</li>
+        <li>NFR7. The spatial resolution of the prediction grid is fixed at 50x50 metres.</li>
+        <li>NFR8. The predictive model shall be validated against a held-out historical test dataset prior to deployment.</li>
     </ul>
 
     <h4>External Requirements</h4>
     <ul>
-        <li>NFR11. The system shall reference peer-reviewed research studies and verified user feedback to substantiate the reliability of its noise predictions.</li>
-        <li>NFR12. The system shall account for known biases in NYC 311 complaint data, recognising that complaint rates may reflect reporting behaviour rather than objective noise levels.</li>
-        <li>NFR13. Noise data shall be presented at grid block level only to prevent identification of individual residents, in accordance with user privacy expectations.</li>
+        <li>NFR9. The system shall reference peer-reviewed research studies and verified user feedback to substantiate the reliability of its noise predictions.</li>
+        <li>NFR10. The system shall account for known biases in NYC 311 complaint data, recognising that complaint rates may reflect reporting behaviour rather than objective noise levels.</li>
+        <li>NFR11. Noise data shall be presented at grid block level only to prevent identification of individual residents, in accordance with user privacy expectations.</li>
     </ul>
 
     <h3>3.3 Domain Requirements</h3>
@@ -456,15 +450,13 @@
         <li>DR3. Noise level differences shall be communicated in a manner that reflects the non-linear nature of human noise perception.</li>
         <li>DR4. The system shall model traffic, construction and baseline urban activity as the primary noise categories, consistent with established urban acoustic research.</li>
         <li>DR5. Construction noise shall be treated as time-bounded based on NYC DOB permit duration, while traffic noise shall be treated as a continuous time-varying source consistent with NYC DOT traffic count patterns.</li>
-        <li>DR6. The system shall rely exclusively on publicly available open datasets, consistent with NYC Open Data policy and open government data principles.</li>
-        <li>DR7. NYC DOB permit filings shall be treated as records of approved construction intent rather than guaranteed execution.</li>
-        <li>DR8. NYC 311 complaint data shall be treated as a citizen-reported proxy rather than a direct noise measurement, consistent with known limitations of complaint-based data in urban informatics research.</li>
-        <li>DR9. All noise predictions shall be framed within the context of residential rental decision-making, recognising that renters evaluate noise within a defined tenancy window.</li>
+        <li>DR6. NYC DOB permit filings shall be treated as records of approved construction intent rather than guaranteed execution.</li>
+        <li>DR7. NYC 311 complaint data shall be treated as a citizen-reported proxy rather than a direct noise measurement, consistent with known limitations of complaint-based data in urban informatics research.</li>
+        <li>DR8. All noise predictions shall be framed within the context of residential rental decision-making, recognising that renters evaluate noise within a defined tenancy window.</li>
     </ul>
 </div>
 
-
-    <div class="section" id="evolution">
+<div class="section" id="evolution">
     <span class="section-label">4. System Evolution</span>
 
     <h3>4.1 Current Assumptions</h3>
@@ -477,29 +469,29 @@
         <li>A4. The primary users of the system are assumed to be non-technical apartment renters who require plain language outputs without acoustic expertise.</li>
         <li>A5. Desktop browser access is assumed to be the primary mode of interaction, with mobile support deferred to a future version.</li>
         <li>A6. All required data sources are assumed to remain publicly available and consistently updated throughout the system lifecycle.</li>
-        <li>A7. SHAP-derived noise source contributions are assumed to be translatable into plain language labels that are meaningful and interpretable by non-specialist users.</li>
+        <li>A7. Predicted noise source contributions are assumed to be translatable into plain language labels that are meaningful and interpretable by non-specialist users.</li>
         <li>A8. Construction permits are assumed to represent approved intent rather than guaranteed execution, and predictions based on permit data are presented accordingly.</li>
     </ul>
 
     <h3>4.2 Anticipated Changes</h3>
+    <p>The following changes are considered likely as the system evolves beyond its initial version, based on findings from user research, professor feedback and known technical limitations.</p>
+
     <ul>
         <li>AC1. Geographic scope may be expanded beyond New York City to other major urban centres as the data pipeline and model architecture are validated.</li>
-        <li>AC2. Additional noise predictors may be incorporated including nightlife density such as proximity to nightclubs and entertainment venues, garbage collection routes and proximity to elevated subway tracks.</li>
-        <li>AC3. Mobile browser support may be introduced in a future version following validation of the desktop experience.</li>
-        <li>AC4. Floor-level noise attenuation may be incorporated as a model variable in a future version.</li>
-        <li>AC5. The confidence indicator may be refined as additional SONYC sensor data becomes available.</li>
-        <li>AC6. A notification or alert feature may be introduced to inform users of significant predicted noise changes for saved locations.</li>
-        <li>AC7. User review integration may be considered in a future version to supplement data-driven predictions with community-sourced noise reports.</li>
+        <li>AC2. Additional noise predictors may be incorporated including nightlife density such as proximity to nightclubs and entertainment venues, garbage collection routes and proximity to elevated subway tracks, as these were consistently identified by user research but are outside the current scope.</li>
+        <li>AC3. Mobile browser support may be introduced in a future version following validation of the desktop experience, as some renters indicated they would use the tool while actively searching for apartments on their phones.</li>
+        <li>AC4. The confidence indicator may be refined as additional SONYC sensor data becomes available or as the sensor network expands, improving prediction reliability across currently underserved grid blocks.</li>
+        <li>AC5. A notification or alert feature may be introduced to inform users of significant predicted noise changes for saved locations, as suggested during the expert interview phase.</li>
+                <li>AC6. User review integration may be considered in a future version to supplement data-driven predictions with community-sourced noise reports, as multiple interviewees indicated reviews would increase their trust in the tool.</li>
     </ul>
 </div>
 
-
-    <div class="section" id="appendix-a">
-    <span class="section-label">Appendix A — Requirements Elicitation</span>
+<div class="section" id="appendix-a">
+    <span class="section-label">Appendix A - Requirements Elicitation</span>
 
     <h3>A.1 Scope of Elicitation</h3>
-    <p>The elicitation activities were designed to answer the following questions:</p>
     <ul>
+        <li>The elicitation activities were designed to answer the following questions:</li>
         <li>How do renters currently evaluate neighbourhood noise before signing a lease?</li>
         <li>How important is noise relative to other rental decision factors?</li>
         <li>What noise sources concern renters most?</li>
@@ -508,29 +500,32 @@
     </ul>
 
     <h3>A.2 Elicitation Methods and Participants</h3>
-    <p><strong>Survey</strong></p>
     <ul>
+        <li>Survey</li>
         <li>Format: Online structured questionnaire with branching logic</li>
-        <li>Respondents: 28 valid responses</li>
-        <li>Demographics: 27 aged 18–25, 1 aged over 35; 18 male, 10 female</li>
+        <li>Respondents: 28 valid responses after removal of duplicate submissions</li>
+        <li>Demographics: 27 aged 18 to 25, 1 aged over 35 , 18 male, 10 female</li>
         <li>20 with renting experience, 8 with no renting experience</li>
-    </ul>
-
-    <p><strong>Interviews</strong></p>
-    <ul>
-        <li>Format: Semi-structured (in-person and video call)</li>
+        <li>Interviews</li>
+        <li>Format: Semi-structured [in-person and video call]</li>
         <li>Participants: 12 interviewees conducted by 6 team members</li>
-        <li>Locations: Japan, Thailand, China, United States</li>
-        <li>Focus areas: noise experience, health awareness, information gaps</li>
+        <li>Locations represented: Japan, Thailand, China, United States</li>
+        <li>Interview questions focused on three areas:</li>
+        <li>Noise experience: what happened, when they realised, what caused it</li>
+        <li>Health and awareness: impact on daily life, awareness of 55 dB threshold</li>
+        <li>Information gap: how they assessed noise before renting, what they wished they had known</li>
     </ul>
 
-    <h3>A.3 Key Findings</h3>
-    <ul>
-        <li>Information Asymmetry: Most respondents relied on a single visit; many experienced louder-than-expected noise.</li>
-        <li>Health Impact Confirmed: 50% unaware of WHO 55 dB threshold; common impacts include sleep disruption and stress.</li>
-        <li>Conditional Trust: 40% willing to trust predictions; trust increases when data sources are explained.</li>
-        <li>Awareness Gap: No participant knew construction permits are publicly available before construction begins.</li>
-    </ul>
+   <h3>A.3 Key Findings</h3>
+<ul>
+    <li><strong>Information Asymmetry:</strong> The majority of respondents relied on a single visit to assess noise - none used a dedicated tool. A significant portion experienced louder than expected noise after moving in. No interview participant was aware that approved construction permits are publicly available before construction begins.</li>
+
+    <li><strong>Health Impact Confirmed:</strong> Approximately 50% of survey respondents were unaware of the WHO 55 dB health threshold. Common reported impacts included sleep disruption, difficulty concentrating, and increased stress.</li>
+
+    <li><strong>Conditional Trust:</strong> Approximately 40% of respondents were willing to trust predictions. Trust increased significantly when data sources were clearly explained which directly validated the confidence indicator and source attribution features.</li>
+
+    <li><strong>Awareness Gap:</strong> No participant was aware that publicly available city data such as permit filings and traffic counts could have predicted their noise situation in advance.</li>
+</ul>
 
     <h3>A.4 Open Issues</h3>
     <ul>
@@ -539,25 +534,19 @@
         <li>Adequacy of SONYC sensor coverage for full NYC grid calibration</li>
     </ul>
 </div>
-
-    <div class="section" id="appendix-b">
-    <span class="section-label">Appendix B — Survey Questions</span>
+<div class="section" id="appendix-b">
+    <span class="section-label">Appendix B - Survey Questions</span>
 
     <p>The full survey was administered via Microsoft Forms. The complete questionnaire including all questions, branching logic, and consent information is accessible at the link below.</p>
 
-    <p><a href="https://forms.cloud.microsoft/r/z03AAMj3Dy" target="_blank">
-        Neighborhood Noise Awareness and Rental Decision-Making Survey – Fill out form
-    </a></p>
+    <p><a href="https://forms.cloud.microsoft/r/z03AAMj3Dy" target="_blank">Neighborhood Noise Awareness and Rental Decision-Making Survey – Fill out form</a></p>
 </div>
-
-
-
-    <div class="section" id="appendix-c">
-    <span class="section-label">Appendix C — Interview Guide</span>
+<div class="section" id="appendix-c">
+    <span class="section-label">Appendix C - Interview Guide</span>
 
     <p>Interviews were semi-structured and conducted across three focus areas. Interviewers were encouraged to adapt questions based on the participant's responses and renting experience.</p>
 
-    <h4>Focus Area 1: Noise Experience</h4>
+    <h3>Focus Area 1: Noise Experience</h3>
     <ul>
         <li>Can you tell me about where you currently live or have lived previously?</li>
         <li>Have you ever experienced any noise problems at a place you were renting?</li>
@@ -565,13 +554,13 @@
         <li>What was the main source of the noise?</li>
     </ul>
 
-    <h4>Focus Area 2: Health and Awareness</h4>
+    <h3>Focus Area 2: Health and Awareness</h3>
     <ul>
         <li>How did the noise affect your daily life?</li>
         <li>Were you aware that prolonged noise exposure above 55 decibels has been linked to cardiovascular disease and sleep disorders?</li>
     </ul>
 
-    <h4>Focus Area 3: Information Gap</h4>
+    <h3>Focus Area 3: Information Gap</h3>
     <ul>
         <li>Before moving in, did you try to check the noise level of the area at all — and if so, how?</li>
         <li>Were you aware that approved construction permits are publicly available before construction begins?</li>
