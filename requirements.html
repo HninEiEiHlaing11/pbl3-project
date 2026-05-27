@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Requirements Specification Document — NoiseMap NYC</title>
 
     <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         :root {
             --bg: #ffffff;
@@ -21,18 +28,23 @@
             --accent-border: #99b4ff;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: Georgia, 'Times New Roman', serif;
             background: var(--bg);
             color: var(--text);
         }
 
-        /* NAV */
+        /* ── NAV ── */
+
         nav {
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(255,255,255,0.95);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(8px);
             border-bottom: 1px solid var(--border);
             padding: 0 48px;
@@ -47,11 +59,18 @@
             font-size: 15px;
             font-weight: 800;
             color: var(--text);
+            letter-spacing: -0.01em;
         }
 
-        .nav-logo span { color: var(--accent); }
+        .nav-logo span {
+            color: var(--accent);
+        }
 
-        .nav-links { display: flex; gap: 28px; }
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
 
         .nav-links a {
             font-family: Arial, sans-serif;
@@ -62,19 +81,65 @@
             transition: color 0.15s;
         }
 
-        .nav-links a:hover { color: var(--accent); }
+        .nav-links a:hover {
+            color: var(--accent);
+        }
 
-        /* LAYOUT */
+        /* ── DROPDOWN ── */
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropbtn {
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: -100px;
+            background: white;
+            min-width: 220px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 0;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 10px 16px;
+            font-size: 13px;
+            color: var(--text2);
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+        }
+
+        .dropdown-content a:hover {
+            background: var(--bg2);
+            color: var(--accent);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* ── LAYOUT ── */
+
         .wrap {
-            max-width: 820px;
+            max-width: 780px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* HERO */
+        /* ── HERO ── */
+
         .hero {
             padding: 64px 0 48px;
             border-bottom: 1px solid var(--border);
+            margin-bottom: 0;
         }
 
         .hero-tag {
@@ -88,13 +153,17 @@
 
         .hero h1 {
             font-family: Arial, sans-serif;
-            font-size: 34px;
+            font-size: 40px;
             font-weight: 800;
+            letter-spacing: -0.02em;
             color: var(--text);
             margin-bottom: 6px;
+            line-height: 1.1;
         }
 
-        .hero h1 span { color: var(--accent); }
+        .hero h1 span {
+            color: var(--accent);
+        }
 
         .hero-sub {
             font-size: 14px;
@@ -102,14 +171,16 @@
             font-family: monospace;
         }
 
-        /* SECTION */
+        /* ── SECTION ── */
+
         .section {
-            padding: 40px 0;
+            padding: 28px 0 28px;
+            scroll-margin-top: 70px;
         }
 
         .section-label {
             font-family: monospace;
-            font-size: 11px;
+            font-size: 10px;
             letter-spacing: 0.14em;
             text-transform: uppercase;
             color: var(--accent);
@@ -119,167 +190,241 @@
             display: block;
         }
 
-        h2 {
-            font-family: Arial, sans-serif;
-            font-size: 20px; /* smaller than index.html */
-            font-weight: 800;
-            margin-bottom: 16px;
-        }
-
         h3 {
             font-family: Arial, sans-serif;
-            font-size: 17px;
+            font-size: 13px;
             font-weight: 700;
-            margin: 18px 0 10px;
+            color: var(--text);
+            margin: 24px 0 12px;
         }
 
-        p, li {
+        p,
+        li {
             font-size: 15px;
             color: var(--text2);
-            line-height: 1.85;
+            line-height: 1.9;
             margin-bottom: 14px;
             text-align: justify;
         }
 
-        ul { padding-left: 20px; }
-
-        /* TABLE OF CONTENTS */
-        .toc {
-            background: var(--bg2);
-            border: 1px solid var(--border);
-            padding: 20px;
-            border-radius: 8px;
-            margin: 30px 0;
+        ul {
+            padding-left: 20px;
         }
-
-        .toc a {
-            display: block;
-            font-size: 14px;
-            color: var(--accent);
-            text-decoration: none;
-            margin: 6px 0;
-        }
-
-        .toc a:hover { text-decoration: underline; }
-
     </style>
+
 </head>
 
-<body>
+<body id="top">
 
-<nav>
-    <div class="nav-logo">NoiseMap <span>NYC</span></div>
-    <div class="nav-links">
-        <a href="index.html">Proposal</a>
-        <a href="requirements.html">Requirements</a>
+    <!-- NAV -->
+    <nav>
+
+        <div class="nav-logo">
+            NoiseMap <span>NYC</span>
+        </div>
+
+        <div class="nav-links">
+
+            <!-- Proposal -->
+
+            <a href="proposal.html">
+                Proposal
+            </a>
+
+            <!-- Requirements -->
+
+            <div class="dropdown">
+
+                <a href="#top" class="dropbtn">
+                    Requirements
+                </a>
+
+                <div class="dropdown-content">
+
+                    <a href="#intro">
+                        1. Introduction
+                    </a>
+
+                    <a href="#user-req">
+                        2. User Requirements
+                    </a>
+
+                    <a href="#system-req">
+                        3. System Requirements
+                    </a>
+
+                    <a href="#evolution">
+                        4. System Evolution
+                    </a>
+
+                    <a href="#appendix-a">
+                        Appendix A
+                    </a>
+
+                    <a href="#appendix-b">
+                        Appendix B
+                    </a>
+
+                    <a href="#appendix-c">
+                        Appendix C
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- CONTENT -->
+
+    <div class="wrap">
+
+        <!-- HERO -->
+
+        <div class="hero">
+
+            <div class="hero-tag">
+                PBL3 · Group G
+            </div>
+
+            <h1>
+                Requirements Specification <span>Document</span>
+            </h1>
+
+            <div class="hero-sub">
+                NoiseMap NYC — System Requirements
+            </div>
+
+        </div>
+
+        <!-- 1 -->
+
+        <div class="section" id="intro">
+
+            <span class="section-label">
+                1. Introduction
+            </span>
+
+            <h3>1.1 Purpose</h3>
+            <p>...</p>
+
+            <h3>1.2 System Overview</h3>
+            <p>...</p>
+
+            <h3>1.3 Intended Audience</h3>
+            <p>...</p>
+
+            <h3>1.4 Scope</h3>
+            <p>...</p>
+
+        </div>
+
+        <!-- 2 -->
+
+        <div class="section" id="user-req">
+
+            <span class="section-label">
+                2. User Requirements Definition
+            </span>
+
+            <h3>2.1 Stakeholders</h3>
+            <p>...</p>
+
+            <h3>2.2 User Requirement Statements</h3>
+            <p>...</p>
+
+            <h3>2.3 Constraints</h3>
+            <p>...</p>
+
+        </div>
+
+        <!-- 3 -->
+
+        <div class="section" id="system-req">
+
+            <span class="section-label">
+                3. System Requirements Specification
+            </span>
+
+            <h3>3.1 Functional Requirements</h3>
+            <p>...</p>
+
+            <h3>3.2 Non-Functional Requirements</h3>
+            <p>...</p>
+
+            <h3>3.3 Domain Requirements</h3>
+            <p>...</p>
+
+        </div>
+
+        <!-- 4 -->
+
+        <div class="section" id="evolution">
+
+            <span class="section-label">
+                4. System Evolution
+            </span>
+
+            <h3>4.1 Current Assumptions</h3>
+            <p>...</p>
+
+            <h3>4.2 Anticipated Changes</h3>
+            <p>...</p>
+
+        </div>
+
+        <!-- APPENDIX A -->
+
+        <div class="section" id="appendix-a">
+
+            <span class="section-label">
+                Appendix A — Requirements Elicitation
+            </span>
+
+            <h3>A.1 Elicitation Methods</h3>
+            <p>...</p>
+
+            <h3>A.2 Survey Summary</h3>
+            <p>...</p>
+
+            <h3>A.3 Interview Summaries</h3>
+            <p>...</p>
+
+            <h3>A.4 Key Findings</h3>
+            <p>...</p>
+
+        </div>
+
+        <!-- APPENDIX B -->
+
+        <div class="section" id="appendix-b">
+
+            <span class="section-label">
+                Appendix B — Survey Questions
+            </span>
+
+            <p>...</p>
+
+        </div>
+
+        <!-- APPENDIX C -->
+
+        <div class="section" id="appendix-c">
+
+            <span class="section-label">
+                Appendix C — Interview Guide
+            </span>
+
+            <p>...</p>
+
+        </div>
+
     </div>
-</nav>
-
-<div class="wrap">
-
-    <div class="hero">
-        <div class="hero-tag">PBL3 · Group G</div>
-        <h1>Requirements Specification <span>Document</span></h1>
-        <div class="hero-sub">NoiseMap NYC — System Requirements</div>
-    </div>
-
-    <!-- TABLE OF CONTENTS -->
-    <div class="toc">
-        <a href="#intro">1. Introduction</a>
-        <a href="#user-req">2. User Requirements Definition</a>
-        <a href="#system-req">3. System Requirements Specification</a>
-        <a href="#evolution">4. System Evolution</a>
-        <a href="#appendix-a">Appendix A — Requirements Elicitation</a>
-        <a href="#appendix-b">Appendix B — Survey Questions</a>
-        <a href="#appendix-c">Appendix C — Interview Guide</a>
-    </div>
-
-    <!-- 1. INTRODUCTION -->
-    <div class="section" id="intro">
-        <span class="section-label">1. Introduction</span>
-
-        <h3>1.1 Purpose</h3>
-        <p>...</p>
-
-        <h3>1.2 System Overview</h3>
-        <p>...</p>
-
-        <h3>1.3 Intended Audience</h3>
-        <p>...</p>
-
-        <h3>1.4 Scope</h3>
-        <p>...</p>
-    </div>
-
-    <!-- 2. USER REQUIREMENTS -->
-    <div class="section" id="user-req">
-        <span class="section-label">2. User Requirements Definition</span>
-
-        <h3>2.1 Stakeholders</h3>
-        <p>...</p>
-
-        <h3>2.2 User Requirement Statements</h3>
-        <p>...</p>
-
-        <h3>2.3 Constraints</h3>
-        <p>...</p>
-    </div>
-
-    <!-- 3. SYSTEM REQUIREMENTS -->
-    <div class="section" id="system-req">
-        <span class="section-label">3. System Requirements Specification</span>
-
-        <h3>3.1 Functional Requirements</h3>
-        <p>...</p>
-
-        <h3>3.2 Non‑Functional Requirements</h3>
-        <p>...</p>
-
-        <h3>3.3 Domain Requirements</h3>
-        <p>...</p>
-    </div>
-
-    <!-- 4. SYSTEM EVOLUTION -->
-    <div class="section" id="evolution">
-        <span class="section-label">4. System Evolution</span>
-
-        <h3>4.1 Current Assumptions</h3>
-        <p>...</p>
-
-        <h3>4.2 Anticipated Changes</h3>
-        <p>...</p>
-    </div>
-
-    <!-- APPENDIX A -->
-    <div class="section" id="appendix-a">
-        <span class="section-label">Appendix A — Requirements Elicitation</span>
-
-        <h3>A.1 Elicitation Methods</h3>
-        <p>...</p>
-
-        <h3>A.2 Survey Summary</h3>
-        <p>...</p>
-
-        <h3>A.3 Interview Summaries</h3>
-        <p>...</p>
-
-        <h3>A.4 Key Findings</h3>
-        <p>...</p>
-    </div>
-
-    <!-- APPENDIX B -->
-    <div class="section" id="appendix-b">
-        <span class="section-label">Appendix B — Survey Questions</span>
-        <p>...</p>
-    </div>
-
-    <!-- APPENDIX C -->
-    <div class="section" id="appendix-c">
-        <span class="section-label">Appendix C — Interview Guide</span>
-        <p>...</p>
-    </div>
-
-</div>
 
 </body>
+
 </html>
