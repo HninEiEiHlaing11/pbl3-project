@@ -164,7 +164,7 @@
 <nav>
     <div class="nav-logo">NoiseMap <span>NYC</span></div>
     <div class="nav-links">
-        <a href="proposal.html">Proposal</a>
+        <a href="index.html">Proposal</a>
         <a href="requirements.html">Requirements</a>
     </div>
 </nav>
@@ -313,273 +313,188 @@
             <li>No neighbour noise prediction</li>
         </ul>
     </div>
-    <!-- 3. SYSTEM REQUIREMENTS -->
+    
     <div class="section" id="system-req">
-        <span class="section-label">3. System Requirements Specification</span>
+    <span class="section-label">3. System Requirements Specification</span>
 
-        <h3>3.1 Functional Requirements</h3>
-        <ul>
-            <li>The system shall display current and future predicted noise levels for any user‑entered address.</li>
-            <li>The system shall compare multiple properties or addresses simultaneously.</li>
-            <li>The system shall visualise noise levels using intuitive methods such as heatmaps or colour scales.</li>
-            <li>The system shall identify and display sources of noise (traffic, construction, nightlife, baseline activity).</li>
-            <li>The system shall allow filtering based on user‑defined noise tolerance levels.</li>
-            <li>The system shall provide optional notifications for unusual or extreme noise changes.</li>
-            <li>The system shall include explanations of technical data (e.g., decibels, health thresholds) in simple terms.</li>
-        </ul>
+    <h3>3.1 Functional Requirements</h3>
+    <p>The following requirements define the specific services and functions the system shall provide.</p>
 
-        <h3>3.2 Non‑Functional Requirements</h3>
+    <ul>
+        <li>FR1. The system shall generate predicted noise levels in decibels for every 50x50 metre grid block across New York City for a forward-looking horizon of up to 12 months.</li>
+        <li>FR2. The system shall apply a predictive model trained on historical urban data to generate monthly noise level predictions per grid block.</li>
+        <li>FR3. The system shall decompose each prediction into individual noise source contributions covering construction, traffic and baseline urban activity.</li>
+        <li>FR4. The system shall compute a confidence score for each grid block based on SONYC sensor proximity and the availability of approved permit data, classifying each as High, Medium or Low.</li>
+        <li>FR5. The system shall distinguish between temporary noise sources with a defined permit end date and permanent noise sources such as traffic in all prediction outputs.</li>
+        <li>FR6. The system shall flag grid blocks where current noise conditions appear low but approved nearby construction permits indicate a significant predicted increase within the forecast period.</li>
+        <li>FR7. The system shall render an interactive web map colour coded by predicted noise level for each grid block.</li>
+        <li>FR8. The system shall display a noise timeline forecast as a line graph for any user-selected grid block, showing monthly predicted noise levels across the forecast horizon.</li>
+        <li>FR9. The system shall display noise source contributions as labelled badges for any selected grid block.</li>
+        <li>FR10. The system shall display a confidence indicator of High, Medium or Low for each grid block reflecting the quality and availability of underlying data.</li>
+        <li>FR11. The system shall visually distinguish grid blocks whose predictions are derived primarily from sensor data from those estimated using complaint proxy data.</li>
+        <li>FR12. The system shall provide a lease overlap calculator that accepts a move-in date and lease duration as inputs and returns a summarised noise profile covering that specific tenancy period.</li>
+        <li>FR13. The system shall display a financial impact estimate within the lease calculator, translating predicted decibel levels above 55 dB into an approximate rental value reduction based on established research.</li>
+        <li>FR14. The system shall allow simultaneous side-by-side comparison of predicted noise levels across at least two neighbourhoods.</li>
+        <li>FR15. The system shall allow users to input their apartment floor level and return an adjusted noise estimate reflecting vertical sound attenuation.</li>
+        <li>FR16. The system shall allow users to filter or highlight grid blocks based on a personally defined noise tolerance threshold.</li>
+        <li>FR17. The system shall generate a shareable output of noise predictions for any selected location.</li>
+    </ul>
 
-        <h4>Product Requirements</h4>
-        <ul>
-            <li>Noise level labels should present moderate noise neutrally, as some users prefer ambient noise.</li>
-            <li>The system must clearly communicate why noise matters before users explore the map.</li>
-            <li>The system must clarify what it can and cannot predict (e.g., cannot predict neighbour noise).</li>
-            <li>Predictions must distinguish between sensor‑based and complaint‑based estimates.</li>
-            <li>Temporary noise (construction) must be distinguished from permanent noise (traffic).</li>
-        </ul>
+    <h3>3.2 Non-Functional Requirements</h3>
+    <p>The following non-functional requirements define the quality attributes and constraints the system must satisfy. They are organised in three categories: product, organisational, and external.</p>
 
-        <h4>Organisational Requirements</h4>
-        <ul>
-            <li>The system must be built using Python, Pandas, GeoPandas, XGBoost, SHAP, Streamlit, and PyDeck.</li>
-            <li>The system covers New York City only.</li>
-            <li>The prediction horizon is fixed at 12 months.</li>
-            <li>The grid resolution is fixed at 50×50 metres.</li>
-            <li>Model validation must be performed using a held‑out historical test set.</li>
-        </ul>
+    <h4>Product Requirements</h4>
+    <ul>
+        <li>NFR1. Noise level classifications shall present moderate noise as a neutral condition, acknowledging that some users actively prefer a degree of ambient noise.</li>
+        <li>NFR2. The system shall communicate the significance of noise exposure to first-time users prior to their engagement with the map.</li>
+        <li>NFR3. The system shall explicitly state that noise from neighbouring residents and building sound insulation quality are outside its predictive scope.</li>
+        <li>NFR4. The system shall differentiate between predictions derived from sensor data and those estimated from complaint proxy data, enabling users to assess prediction reliability accordingly.</li>
+        <li>NFR5. The system shall distinguish between temporary noise sources such as construction and permanent ones such as traffic in all user-facing outputs.</li>
+    </ul>
 
-        <h4>External Requirements</h4>
-       
+    <h4>Organisational Requirements</h4>
+    <ul>
+        <li>NFR6. The system shall be developed open source tools and frameworks only.</li>
+        <li>NFR7. The geographic scope of the system is limited to New York City in its initial version.</li>
+        <li>NFR8. The prediction horizon is fixed at a maximum of 12 months.</li>
+        <li>NFR9. The spatial resolution of the prediction grid is fixed at 50x50 metres.</li>
+        <li>NFR10. The predictive model shall be validated against a held-out historical test dataset prior to deployment.</li>
+    </ul>
 
-        <h3>3.3 Domain Requirements</h3>
-       
-    </div>
+    <h4>External Requirements</h4>
+    <ul>
+        <li>NFR11. The system shall reference peer-reviewed research studies and verified user feedback to substantiate the reliability of its noise predictions.</li>
+        <li>NFR12. The system shall account for known biases in NYC 311 complaint data, recognising that complaint rates may reflect reporting behaviour rather than objective noise levels.</li>
+        <li>NFR13. Noise data shall be presented at grid block level only to prevent identification of individual residents, in accordance with user privacy expectations.</li>
+    </ul>
 
-    <!-- 4. SYSTEM EVOLUTION -->
+    <h3>3.3 Domain Requirements</h3>
+    <ul>
+        <li>DR1. The system shall adopt decibels (dB) as the standard unit of noise measurement, consistent with established acoustic conventions.</li>
+        <li>DR2. The system shall designate 55 dB as the threshold above which noise is considered potentially harmful, in accordance with World Health Organisation environmental noise guidelines.</li>
+        <li>DR3. Noise level differences shall be communicated in a manner that reflects the non-linear nature of human noise perception.</li>
+        <li>DR4. The system shall model traffic, construction and baseline urban activity as the primary noise categories, consistent with established urban acoustic research.</li>
+        <li>DR5. Construction noise shall be treated as time-bounded based on NYC DOB permit duration, while traffic noise shall be treated as a continuous time-varying source consistent with NYC DOT traffic count patterns.</li>
+        <li>DR6. The system shall rely exclusively on publicly available open datasets, consistent with NYC Open Data policy and open government data principles.</li>
+        <li>DR7. NYC DOB permit filings shall be treated as records of approved construction intent rather than guaranteed execution.</li>
+        <li>DR8. NYC 311 complaint data shall be treated as a citizen-reported proxy rather than a direct noise measurement, consistent with known limitations of complaint-based data in urban informatics research.</li>
+        <li>DR9. All noise predictions shall be framed within the context of residential rental decision-making, recognising that renters evaluate noise within a defined tenancy window.</li>
+    </ul>
+</div>
+
+
     <div class="section" id="evolution">
-        <span class="section-label">4. System Evolution</span>
+    <span class="section-label">4. System Evolution</span>
 
-        <h3>4.1 Current Assumptions</h3>
-        
+    <h3>4.1 Current Assumptions</h3>
+    <p>The following assumptions underpin the current design and requirements of the system. If any of these assumptions prove incorrect, requirements may need to be revised accordingly.</p>
 
-        <h3>4.2 Anticipated Changes</h3>
-       
-    </div>
+    <ul>
+        <li>A1. SONYC sensor data from 55 sensors is assumed to provide sufficient ground truth coverage to train a model that generalises across the broader NYC grid.</li>
+        <li>A2. NYC DOB permit filings are assumed to be a reliable indicator of future construction noise activity within the forecast period.</li>
+        <li>A3. Monthly temporal aggregation is assumed to be sufficiently granular for renter decision-making, as renters are assumed to plan by month rather than by week or day.</li>
+        <li>A4. The primary users of the system are assumed to be non-technical apartment renters who require plain language outputs without acoustic expertise.</li>
+        <li>A5. Desktop browser access is assumed to be the primary mode of interaction, with mobile support deferred to a future version.</li>
+        <li>A6. All required data sources are assumed to remain publicly available and consistently updated throughout the system lifecycle.</li>
+        <li>A7. SHAP-derived noise source contributions are assumed to be translatable into plain language labels that are meaningful and interpretable by non-specialist users.</li>
+        <li>A8. Construction permits are assumed to represent approved intent rather than guaranteed execution, and predictions based on permit data are presented accordingly.</li>
+    </ul>
 
-    <!-- APPENDIX A -->
+    <h3>4.2 Anticipated Changes</h3>
+    <ul>
+        <li>AC1. Geographic scope may be expanded beyond New York City to other major urban centres as the data pipeline and model architecture are validated.</li>
+        <li>AC2. Additional noise predictors may be incorporated including nightlife density such as proximity to nightclubs and entertainment venues, garbage collection routes and proximity to elevated subway tracks.</li>
+        <li>AC3. Mobile browser support may be introduced in a future version following validation of the desktop experience.</li>
+        <li>AC4. Floor-level noise attenuation may be incorporated as a model variable in a future version.</li>
+        <li>AC5. The confidence indicator may be refined as additional SONYC sensor data becomes available.</li>
+        <li>AC6. A notification or alert feature may be introduced to inform users of significant predicted noise changes for saved locations.</li>
+        <li>AC7. User review integration may be considered in a future version to supplement data-driven predictions with community-sourced noise reports.</li>
+    </ul>
+</div>
+
+
     <div class="section" id="appendix-a">
-        <span class="section-label">Appendix A — Requirements Elicitation</span>
+    <span class="section-label">Appendix A — Requirements Elicitation</span>
 
-        <h3>A.1 Elicitation Methods</h3>
-        
+    <h3>A.1 Scope of Elicitation</h3>
+    <p>The elicitation activities were designed to answer the following questions:</p>
+    <ul>
+        <li>How do renters currently evaluate neighbourhood noise before signing a lease?</li>
+        <li>How important is noise relative to other rental decision factors?</li>
+        <li>What noise sources concern renters most?</li>
+        <li>Whether renters would trust a predictive noise tool and under what conditions?</li>
+        <li>What information renters wish they had known before signing their lease?</li>
+    </ul>
 
-        <h3>A.2 Survey Summary</h3>
-       
+    <h3>A.2 Elicitation Methods and Participants</h3>
+    <p><strong>Survey</strong></p>
+    <ul>
+        <li>Format: Online structured questionnaire with branching logic</li>
+        <li>Respondents: 28 valid responses</li>
+        <li>Demographics: 27 aged 18–25, 1 aged over 35; 18 male, 10 female</li>
+        <li>20 with renting experience, 8 with no renting experience</li>
+    </ul>
 
-        <h3>A.3 Interview Summaries</h3>
-       
+    <p><strong>Interviews</strong></p>
+    <ul>
+        <li>Format: Semi-structured (in-person and video call)</li>
+        <li>Participants: 12 interviewees conducted by 6 team members</li>
+        <li>Locations: Japan, Thailand, China, United States</li>
+        <li>Focus areas: noise experience, health awareness, information gaps</li>
+    </ul>
 
-        <h3>A.4 Key Findings</h3>
-        
-    </div>
+    <h3>A.3 Key Findings</h3>
+    <ul>
+        <li>Information Asymmetry: Most respondents relied on a single visit; many experienced louder-than-expected noise.</li>
+        <li>Health Impact Confirmed: 50% unaware of WHO 55 dB threshold; common impacts include sleep disruption and stress.</li>
+        <li>Conditional Trust: 40% willing to trust predictions; trust increases when data sources are explained.</li>
+        <li>Awareness Gap: No participant knew construction permits are publicly available before construction begins.</li>
+    </ul>
 
-    <!-- APPENDIX B -->
-<div class="section" id="appendix-b">
+    <h3>A.4 Open Issues</h3>
+    <ul>
+        <li>Availability of nightlife and building insulation datasets for NYC</li>
+        <li>Feasibility of time-of-day prediction granularity</li>
+        <li>Adequacy of SONYC sensor coverage for full NYC grid calibration</li>
+    </ul>
+</div>
+
+    <div class="section" id="appendix-b">
     <span class="section-label">Appendix B — Survey Questions</span>
 
-    <h2>Neighborhood Noise Awareness and Rental Decision‑Making Survey</h2>
+    <p>The full survey was administered via Microsoft Forms. The complete questionnaire including all questions, branching logic, and consent information is accessible at the link below.</p>
 
-    <div class="survey-box">
-        <p>
-            This survey was conducted by Group G as part of the PBL3 Smart City Project at Ritsumeikan University.
-            The purpose is to understand how noise pollution affects rental decision‑making and awareness among renters.
-        </p>
-
-        <ul class="survey-info">
-            <li>Participation is voluntary</li>
-            <li>Responses are anonymous</li>
-            <li>No identifying information is collected</li>
-            <li>Data is used only for academic research</li>
-        </ul>
-    </div>
-
-    <style>
-        .survey-box {
-            background: var(--bg2);
-            border: 1px solid var(--border);
-            padding: 20px 24px;
-            border-radius: 8px;
-            margin-bottom: 28px;
-        }
-        .survey-info li {
-            margin-bottom: 6px;
-        }
-        .question {
-            margin-bottom: 22px;
-        }
-        .question strong {
-            font-size: 15.5px;
-            color: var(--text);
-        }
-        .options {
-            margin-top: 6px;
-            padding-left: 22px;
-            line-height: 1.7;
-        }
-        .scale {
-            margin-top: 6px;
-            padding-left: 22px;
-            font-family: monospace;
-            color: var(--text3);
-        }
-    </style>
-
-    <h3>Survey Questions</h3>
-
-    <ol>
-
-        <li class="question">
-            <strong>What is your age group?</strong>
-            <div class="options">
-                ☐ under 18<br>
-                ☐ 18–25<br>
-                ☐ 26–35<br>
-                ☐ over 35
-            </div>
-        </li>
-
-        <li class="question">
-            <strong>What is your gender?</strong>
-            <div class="options">
-                ☐ Male<br>
-                ☐ Female<br>
-                ☐ Non‑binary<br>
-                ☐ Prefer not to say
-            </div>
-        </li>
-
-        <li class="question">
-            <strong>Have you ever rented an apartment?</strong>
-            <div class="options">
-                ☐ Yes, I have rented before<br>
-                ☐ Yes, I am currently renting<br>
-                ☐ No, I have never rented
-            </div>
-        </li>
-
-        <li class="question">
-            <strong>How important is noise level when choosing a rental apartment?</strong>
-            <div class="scale">(1 = Not important — 5 = Very important)</div>
-        </li>
-
-        <li class="question">
-            <strong>Have you ever used any app or noise map to assess noise level before renting?</strong>
-            <div class="options">
-                ☐ Yes<br>
-                ☐ No
-            </div>
-        </li>
-
-        <li class="question">
-            <strong>Have you ever hesitated or changed your rental decision because of noise?</strong>
-            <div class="options">
-                ☐ Yes<br>
-                ☐ No
-            </div>
-        </li>
-
-        <li class="question">
-            <strong>How satisfied were you with the information provided by the app or noise map?</strong>
-            <div class="scale">(1 = Very unsatisfied — 5 = Very satisfied)</div>
-        </li>
-
-        <li class="question">
-            <strong>What other methods did you use to assess the noise level before moving in?</strong>
-            <div class="options">
-                ☐ Visited the area<br>
-                ☐ Looked up noise complaints online<br>
-                ☐ Did not check<br>
-                ☐ Other
-            </div>
-        </li>
-
-        <li class="question">
-            <strong>Did the noise level change significantly from what you expected after moving in?</strong>
-            <div class="options">
-                ☐ Louder than expected<br>
-                ☐ Quieter than expected<br>
-                ☐ No<br>
-                ☐ I did not notice
-            </div>
-        </li>
-
-        <li class="question">
-            <strong>What do you think caused the noise to be louder than expected?</strong>
-            <div class="options">
-                ☐ Nearby construction<br>
-                ☐ Traffic heavier than expected<br>
-                ☐ Urban activity<br>
-                ☐ Noisy neighbours<br>
-                ☐ Other
-            </div>
-        </li>
-
-        <li class="question">
-            <strong>How much did the unexpected noises affect your daily life?</strong>
-            <div class="scale">(1 = No impact — 5 = Severely affected)</div>
-        </li>
-
-        <li class="question">
-            <strong>Have you experienced any of the following symptoms due to noise?</strong>
-            <div class="options">
-                ☐ Difficulty sleeping<br>
-                ☐ Increased stress or anxiety<br>
-                ☐ Difficulty concentrating<br>
-                ☐ Headaches<br>
-                ☐ Other
-            </div>
-        </li>
-
-        <li class="question">
-            <strong>Were you aware that prolonged exposure above 55 dB is linked to health risks?</strong>
-            <div class="options">
-                ☐ Yes, fully aware<br>
-                ☐ I had a general idea<br>
-                ☐ No, I was not aware
-            </div>
-        </li>
-
-        <li class="question">
-            <strong>Would you trust noise predictions built from public city data?</strong>
-            <div class="options">
-                ☐ Yes<br>
-                ☐ Yes, if data sources are clearly explained<br>
-                ☐ Not sure<br>
-                ☐ No
-            </div>
-        </li>
-
-        <li class="question">
-            <strong>If yes, please specify why.</strong>
-        </li>
-
-        <li class="question">
-            <strong>Is there anything regarding noise or neighbourhood conditions you wish you had known before signing your lease?</strong>
-        </li>
-
-    </ol>
+    <p><a href="https://forms.cloud.microsoft/r/z03AAMj3Dy" target="_blank">
+        Neighborhood Noise Awareness and Rental Decision-Making Survey – Fill out form
+    </a></p>
 </div>
 
 
-    <!-- APPENDIX C -->
+
     <div class="section" id="appendix-c">
-        <span class="section-label">Appendix C — Interview Guide</span>
-        <p>
-            
-        </p>
-    </div>
+    <span class="section-label">Appendix C — Interview Guide</span>
 
+    <p>Interviews were semi-structured and conducted across three focus areas. Interviewers were encouraged to adapt questions based on the participant's responses and renting experience.</p>
+
+    <h4>Focus Area 1: Noise Experience</h4>
+    <ul>
+        <li>Can you tell me about where you currently live or have lived previously?</li>
+        <li>Have you ever experienced any noise problems at a place you were renting?</li>
+        <li>When did you first realise noise was going to be a problem — before or after signing?</li>
+        <li>What was the main source of the noise?</li>
+    </ul>
+
+    <h4>Focus Area 2: Health and Awareness</h4>
+    <ul>
+        <li>How did the noise affect your daily life?</li>
+        <li>Were you aware that prolonged noise exposure above 55 decibels has been linked to cardiovascular disease and sleep disorders?</li>
+    </ul>
+
+    <h4>Focus Area 3: Information Gap</h4>
+    <ul>
+        <li>Before moving in, did you try to check the noise level of the area at all — and if so, how?</li>
+        <li>Were you aware that approved construction permits are publicly available before construction begins?</li>
+        <li>If you had known the noise situation in advance, would it have changed your decision?</li>
+        <li>What information about noise would you have wanted before signing your lease?</li>
+    </ul>
 </div>
-
-</body>
-</html>
