@@ -156,18 +156,110 @@
         }
 
         .toc a:hover { text-decoration: underline; }
+       
+        .dropdown {
+            position: relative;
+        }
+
+        .dropbtn {
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: -100px;
+            background: white;
+            min-width: 220px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 0;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 10px 16px;
+            font-size: 13px;
+            color: var(--text2);
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+        }
+
+        .dropdown-content a:hover {
+            background: var(--bg2);
+            color: var(--accent);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
     </style>
 </head>
 
-<body>
+<body id="top">
+<!-- NAV -->
+    <nav>
 
-<nav>
-    <div class="nav-logo">NoiseMap <span>NYC</span></div>
-    <div class="nav-links">
-        <a href="index.html">Proposal</a>
-        <a href="requirements.html">Requirements</a>
-    </div>
-</nav>
+        <div class="nav-logo">
+            NoiseMap <span>NYC</span>
+        </div>
+
+        <div class="nav-links">
+
+            <!-- Proposal -->
+
+            <a href="proposal.html">
+                Proposal
+            </a>
+
+            <!-- Requirements -->
+
+            <div class="dropdown">
+
+                <a href="#top" class="dropbtn">
+                    Requirements
+                </a>
+
+                <div class="dropdown-content">
+
+                    <a href="#intro">
+                        1. Introduction
+                    </a>
+
+                    <a href="#user-req">
+                        2. User Requirements
+                    </a>
+
+                    <a href="#system-req">
+                        3. System Requirements
+                    </a>
+
+                    <a href="#evolution">
+                        4. System Evolution
+                    </a>
+
+                    <a href="#appendix-a">
+                        Appendix A
+                    </a>
+
+                    <a href="#appendix-b">
+                        Appendix B
+                    </a>
+
+                    <a href="#appendix-c">
+                        Appendix C
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
 
 <div class="wrap">
 
