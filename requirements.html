@@ -349,22 +349,10 @@
         </ul>
 
         <h4>External Requirements</h4>
-        <ul>
-            <li>The system shall support user trust by referencing research studies and verified feedback.</li>
-            <li>The system shall acknowledge biases in 311 complaint data.</li>
-            <li>The system must not present data in ways that identify individual residents.</li>
-        </ul>
+       
 
         <h3>3.3 Domain Requirements</h3>
-        <p>
-            Domain requirements include the constraints and rules imposed by the nature of urban noise modelling:
-        </p>
-        <ul>
-            <li>Noise propagation varies by building geometry, street width, and elevation.</li>
-            <li>Construction permits may be updated or cancelled, affecting prediction accuracy.</li>
-            <li>Traffic patterns follow seasonal and weekday/weekend cycles.</li>
-            <li>Sensor coverage is uneven across NYC, requiring proxy data in low‑coverage areas.</li>
-        </ul>
+       
     </div>
 
     <!-- 4. SYSTEM EVOLUTION -->
@@ -372,20 +360,10 @@
         <span class="section-label">4. System Evolution</span>
 
         <h3>4.1 Current Assumptions</h3>
-        <ul>
-            <li>Noise is not always the top rental decision factor.</li>
-            <li>Complaint‑based datasets may be biased and incomplete.</li>
-            <li>Users have different tolerance levels; “quiet” is not universally preferred.</li>
-            <li>Night‑time noise is more impactful than daytime noise.</li>
-        </ul>
+        
 
         <h3>4.2 Anticipated Changes</h3>
-        <ul>
-            <li>Future versions may include time‑of‑day predictions.</li>
-            <li>Nightlife datasets may be expanded for better accuracy.</li>
-            <li>Improved insulation or building‑level data may allow indoor noise estimates.</li>
-            <li>Expansion to other cities may be possible once NYC version is stable.</li>
-        </ul>
+       
     </div>
 
     <!-- APPENDIX A -->
@@ -393,44 +371,205 @@
         <span class="section-label">Appendix A — Requirements Elicitation</span>
 
         <h3>A.1 Elicitation Methods</h3>
-        <ul>
-            <li>Survey (28 respondents)</li>
-            <li>Interviews (12 participants)</li>
-            <li>Expert interview with ISSE professor</li>
-        </ul>
+        
 
         <h3>A.2 Survey Summary</h3>
-        <ul>
-            <li>Most renters rely on a single physical visit to assess noise.</li>
-            <li>Noise is moderately important but often underestimated.</li>
-            <li>50% unaware of 55 dB health risks.</li>
-            <li>Common impacts: sleep disruption, stress, concentration issues.</li>
-        </ul>
+       
 
         <h3>A.3 Interview Summaries</h3>
-        <ul>
-            <li>Unexpected noise sources include traffic, construction, nightlife, neighbours.</li>
-            <li>Users want simple visualisations and clear “good vs bad” indicators.</li>
-            <li>Trust increases with transparent data sources.</li>
-        </ul>
+       
 
         <h3>A.4 Key Findings</h3>
-        <ul>
-            <li>Single visits are insufficient to assess noise conditions.</li>
-            <li>Noise is frequently underestimated before moving in.</li>
-            <li>Night‑time noise is the most critical factor.</li>
-            <li>Users prefer heatmaps and simple noise scores.</li>
-            <li>Expert validation confirms need for temporary vs permanent noise distinction.</li>
-        </ul>
+        
     </div>
 
     <!-- APPENDIX B -->
-    <div class="section" id="appendix-b">
-        <span class="section-label">Appendix B — Survey Questions</span>
+<div class="section" id="appendix-b">
+    <span class="section-label">Appendix B — Survey Questions</span>
+
+    <h2>Neighborhood Noise Awareness and Rental Decision‑Making Survey</h2>
+
+    <div class="survey-box">
         <p>
-            
+            This survey was conducted by Group G as part of the PBL3 Smart City Project at Ritsumeikan University.
+            The purpose is to understand how noise pollution affects rental decision‑making and awareness among renters.
         </p>
+
+        <ul class="survey-info">
+            <li>Participation is voluntary</li>
+            <li>Responses are anonymous</li>
+            <li>No identifying information is collected</li>
+            <li>Data is used only for academic research</li>
+        </ul>
     </div>
+
+    <style>
+        .survey-box {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            padding: 20px 24px;
+            border-radius: 8px;
+            margin-bottom: 28px;
+        }
+        .survey-info li {
+            margin-bottom: 6px;
+        }
+        .question {
+            margin-bottom: 22px;
+        }
+        .question strong {
+            font-size: 15.5px;
+            color: var(--text);
+        }
+        .options {
+            margin-top: 6px;
+            padding-left: 22px;
+            line-height: 1.7;
+        }
+        .scale {
+            margin-top: 6px;
+            padding-left: 22px;
+            font-family: monospace;
+            color: var(--text3);
+        }
+    </style>
+
+    <h3>Survey Questions</h3>
+
+    <ol>
+
+        <li class="question">
+            <strong>What is your age group?</strong>
+            <div class="options">
+                ☐ under 18<br>
+                ☐ 18–25<br>
+                ☐ 26–35<br>
+                ☐ over 35
+            </div>
+        </li>
+
+        <li class="question">
+            <strong>What is your gender?</strong>
+            <div class="options">
+                ☐ Male<br>
+                ☐ Female<br>
+                ☐ Non‑binary<br>
+                ☐ Prefer not to say
+            </div>
+        </li>
+
+        <li class="question">
+            <strong>Have you ever rented an apartment?</strong>
+            <div class="options">
+                ☐ Yes, I have rented before<br>
+                ☐ Yes, I am currently renting<br>
+                ☐ No, I have never rented
+            </div>
+        </li>
+
+        <li class="question">
+            <strong>How important is noise level when choosing a rental apartment?</strong>
+            <div class="scale">(1 = Not important — 5 = Very important)</div>
+        </li>
+
+        <li class="question">
+            <strong>Have you ever used any app or noise map to assess noise level before renting?</strong>
+            <div class="options">
+                ☐ Yes<br>
+                ☐ No
+            </div>
+        </li>
+
+        <li class="question">
+            <strong>Have you ever hesitated or changed your rental decision because of noise?</strong>
+            <div class="options">
+                ☐ Yes<br>
+                ☐ No
+            </div>
+        </li>
+
+        <li class="question">
+            <strong>How satisfied were you with the information provided by the app or noise map?</strong>
+            <div class="scale">(1 = Very unsatisfied — 5 = Very satisfied)</div>
+        </li>
+
+        <li class="question">
+            <strong>What other methods did you use to assess the noise level before moving in?</strong>
+            <div class="options">
+                ☐ Visited the area<br>
+                ☐ Looked up noise complaints online<br>
+                ☐ Did not check<br>
+                ☐ Other
+            </div>
+        </li>
+
+        <li class="question">
+            <strong>Did the noise level change significantly from what you expected after moving in?</strong>
+            <div class="options">
+                ☐ Louder than expected<br>
+                ☐ Quieter than expected<br>
+                ☐ No<br>
+                ☐ I did not notice
+            </div>
+        </li>
+
+        <li class="question">
+            <strong>What do you think caused the noise to be louder than expected?</strong>
+            <div class="options">
+                ☐ Nearby construction<br>
+                ☐ Traffic heavier than expected<br>
+                ☐ Urban activity<br>
+                ☐ Noisy neighbours<br>
+                ☐ Other
+            </div>
+        </li>
+
+        <li class="question">
+            <strong>How much did the unexpected noises affect your daily life?</strong>
+            <div class="scale">(1 = No impact — 5 = Severely affected)</div>
+        </li>
+
+        <li class="question">
+            <strong>Have you experienced any of the following symptoms due to noise?</strong>
+            <div class="options">
+                ☐ Difficulty sleeping<br>
+                ☐ Increased stress or anxiety<br>
+                ☐ Difficulty concentrating<br>
+                ☐ Headaches<br>
+                ☐ Other
+            </div>
+        </li>
+
+        <li class="question">
+            <strong>Were you aware that prolonged exposure above 55 dB is linked to health risks?</strong>
+            <div class="options">
+                ☐ Yes, fully aware<br>
+                ☐ I had a general idea<br>
+                ☐ No, I was not aware
+            </div>
+        </li>
+
+        <li class="question">
+            <strong>Would you trust noise predictions built from public city data?</strong>
+            <div class="options">
+                ☐ Yes<br>
+                ☐ Yes, if data sources are clearly explained<br>
+                ☐ Not sure<br>
+                ☐ No
+            </div>
+        </li>
+
+        <li class="question">
+            <strong>If yes, please specify why.</strong>
+        </li>
+
+        <li class="question">
+            <strong>Is there anything regarding noise or neighbourhood conditions you wish you had known before signing your lease?</strong>
+        </li>
+
+    </ol>
+</div>
+
 
     <!-- APPENDIX C -->
     <div class="section" id="appendix-c">
