@@ -7,7 +7,6 @@
     <title>UML Diagrams — NoiseMap NYC</title>
 
     <style>
-      
         *,
         *::before,
         *::after {
@@ -128,25 +127,19 @@
             padding: 24px 0 24px;
             scroll-margin-top: 70px;
         }
+
         .img-wrap {
             border: 1px solid #eee;
-            padding: 0px; 
+            border-radius: 8px;
+            overflow: hidden;
+            padding: 0;
             margin-bottom: 20px;
-            overflow: visible; 
-}
-
-.img-wrap img {
-    width: 100%;
-    display: block;
-}
-
+        }
 
         .img-wrap img {
             width: 100%;
             display: block;
-}
-
-
+        }
 
         .section-label {
             font-family: monospace;
@@ -206,14 +199,11 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
-    
-
     </style>
 </head>
 
 <body id="top">
 
-    <!-- NAV -->
     <nav>
         <div class="nav-logo">
             NoiseMap <span>NYC</span>
@@ -234,7 +224,6 @@
                 </div>
             </div>
 
-            <!-- NEW UML PAGE LINK -->
             <a href="uml.html">UML</a>
         </div>
     </nav>
@@ -247,42 +236,49 @@
             <div class="hero-sub">C lass · Activity · Sequence · State · Component · Usecase</div>
         </div>
 
-        <!-- CLASS -->
         <div class="section">
             <span class="section-label">Class Diagram</span>
-            <img src="uml/class.svg" style="width:100%; border:1px solid #eee; border-radius:8px;">
+            <div class="img-wrap" style="margin-bottom:0;">
+                <img src="uml/class.svg">
+            </div>
         </div>
 
-        <!-- ACTIVITY -->
-        <div class="img-wrap">
+        <div class="section">
             <span class="section-label">Activity Diagram</span>
-            <img src="uml/activity.svg" style="width:100%; border:1px solid #eee; border-radius:8px; margin-bottom:30px;">
-            <img src="uml/sub.svg" style="width:100%; border:1px solid #eee; border-radius:8px;">
-
+            <div class="img-wrap" style="margin-bottom:30px;">
+                <img src="uml/activity.svg">
+            </div>
+            <div class="img-wrap" style="margin-bottom:0;">
+                <img src="uml/sub.svg">
+            </div>
         </div>
 
-        <!-- SEQUENCE -->
-        <div class="img-wrap">
+        <div class="section">
             <span class="section-label">Sequence Diagram</span>
-            <img src="uml/sequence.svg" style="width:100%; border:1px solid #eee; border-radius:8px;">
+            <div class="img-wrap" style="margin-bottom:0;">
+                <img src="uml/sequence.svg">
+            </div>
         </div>
 
-        <!-- STATE -->
-        <div class="img-wrap">
+        <div class="section">
             <span class="section-label">State Machine Diagram</span>
-            <img src="uml/state.svg" style="width:100%; border:1px solid #eee; border-radius:8px;">
+            <div class="img-wrap" style="margin-bottom:0;">
+                <img src="uml/state.svg">
+            </div>
         </div>
 
-        <!-- COMPONENT -->
-        <div class="img-wrap">
+        <div class="section">
             <span class="section-label">Component Diagram</span>
-            <img src="uml/component.svg" style="width:100%; border:1px solid #eee; border-radius:8px;">
+            <div class="img-wrap" style="margin-bottom:0;">
+                <img src="uml/component.svg">
+            </div>
         </div>
 
-        <!-- USE CASE -->
-        <div class="img-wrap">
+        <div class="section">
             <span class="section-label">Use Case Diagram</span>
-            <img src="uml/usecase.svg" style="width:100%; border:1px solid #eee; border-radius:8px;">
+            <div class="img-wrap" style="margin-bottom:0;">
+                <img src="uml/usecase.svg">
+            </div>
         </div>
 
     </div>
