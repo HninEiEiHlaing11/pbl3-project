@@ -128,6 +128,19 @@
             padding: 24px 0 24px;
             scroll-margin-top: 70px;
         }
+        .img-wrap {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 4px; /* 让边框和图片之间有一点空隙 */
+            overflow: hidden; /* 让圆角生效 */
+            margin-bottom: 20px; /* 保持段落间距 */
+        }
+
+        .img-wrap img {
+            width: 100%;
+            display: block; /* 避免底部出现小空隙 */
+        }
+
 
         .section-label {
             font-family: monospace;
@@ -227,7 +240,7 @@
         <div class="hero">
             <div class="hero-tag">PBL3 · Group G</div>
             <h1>UML <span>Diagrams</span></h1>
-            <div class="hero-sub">Use Case · Activity · Sequence · State · Component · Class</div>
+            <div class="hero-sub">C lass · Activity · Sequence · State · Component · Usecase</div>
         </div>
 
         <!-- CLASS -->
@@ -237,7 +250,7 @@
         </div>
 
         <!-- ACTIVITY -->
-        <div class="section">
+        <div class="img-wrap">
             <span class="section-label">Activity Diagram</span>
             <img src="uml/activity.svg" style="width:100%; border:1px solid #eee; border-radius:8px; margin-bottom:30px;">
             <img src="uml/sub.svg" style="width:100%; border:1px solid #eee; border-radius:8px;">
@@ -245,25 +258,25 @@
         </div>
 
         <!-- SEQUENCE -->
-        <div class="section">
+        <div class="img-wrap">
             <span class="section-label">Sequence Diagram</span>
             <img src="uml/sequence.svg" style="width:100%; border:1px solid #eee; border-radius:8px;">
         </div>
 
         <!-- STATE -->
-        <div class="section">
+        <div class="img-wrap">
             <span class="section-label">State Machine Diagram</span>
             <img src="uml/state.svg" style="width:100%; border:1px solid #eee; border-radius:8px;">
         </div>
 
         <!-- COMPONENT -->
-        <div class="section">
+        <div class="img-wrap">
             <span class="section-label">Component Diagram</span>
             <img src="uml/component.svg" style="width:100%; border:1px solid #eee; border-radius:8px;">
         </div>
 
         <!-- USE CASE -->
-        <div class="section">
+        <div class="img-wrap">
             <span class="section-label">Use Case Diagram</span>
             <img src="uml/usecase.svg" style="width:100%; border:1px solid #eee; border-radius:8px;">
         </div>
