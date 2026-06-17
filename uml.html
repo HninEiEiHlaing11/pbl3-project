@@ -130,8 +130,8 @@
 
         .img-wrap {
             border: 1px solid #eee;
-            border-radius: 8px;
-            overflow: hidden;
+            border-radius: 0; /* Completely square corners to prevent clipping */
+            overflow: visible;
             padding: 0;
             margin-bottom: 20px;
         }
@@ -233,50 +233,50 @@
         <div class="hero">
             <div class="hero-tag">PBL3 · Group G</div>
             <h1>UML <span>Diagrams</span></h1>
-            <div class="hero-sub">C lass · Activity · Sequence · State · Component · Usecase</div>
+            <div class="hero-sub">Class · Activity · Sequence · State · Component · Usecase</div>
         </div>
 
         <div class="section">
             <span class="section-label">Class Diagram</span>
-            <div class="img-wrap" style="margin-bottom:0;">
+            <div class="img-wrap" style="margin-bottom:0; border-radius:0;">
                 <img src="uml/class.svg">
             </div>
         </div>
 
         <div class="section">
             <span class="section-label">Activity Diagram</span>
-            <div class="img-wrap" style="margin-bottom:30px;">
+            <div class="img-wrap" style="margin-bottom:30px; border-radius:0;">
                 <img src="uml/activity.svg">
             </div>
-            <div class="img-wrap" style="margin-bottom:0;">
+            <div class="img-wrap" style="margin-bottom:0; border-radius:0;">
                 <img src="uml/sub.svg">
             </div>
         </div>
 
         <div class="section">
             <span class="section-label">Sequence Diagram</span>
-            <div class="img-wrap" style="margin-bottom:0;">
+            <div class="img-wrap" style="margin-bottom:0; border-radius:0;">
                 <img src="uml/sequence.svg">
             </div>
         </div>
 
         <div class="section">
             <span class="section-label">State Machine Diagram</span>
-            <div class="img-wrap" style="margin-bottom:0;">
+            <div class="img-wrap" style="margin-bottom:0; border-radius:0;">
                 <img src="uml/state.svg">
             </div>
         </div>
 
         <div class="section">
             <span class="section-label">Component Diagram</span>
-            <div class="img-wrap" style="margin-bottom:0;">
+            <div class="img-wrap" style="margin-bottom:0; border-radius:0;">
                 <img src="uml/component.svg">
             </div>
         </div>
 
         <div class="section">
             <span class="section-label">Use Case Diagram</span>
-            <div class="img-wrap" style="margin-bottom:0;">
+            <div class="img-wrap" style="margin-bottom:0; border-radius:0;">
                 <img src="uml/usecase.svg">
             </div>
         </div>
