@@ -129,17 +129,19 @@
             scroll-margin-top: 70px;
         }
         .img-wrap {
-            border: 1px solid #eee;
             border-radius: 8px;
-            padding: 4px; /* 让边框和图片之间有一点空隙 */
-            overflow: hidden; /* 让圆角生效 */
-            margin-bottom: 20px; /* 保持段落间距 */
+            padding: 4px;
+            margin-bottom: 20px;
+            outline: 1px solid #eee;
+            outline-offset: -1px;
+            overflow: hidden;
         }
 
         .img-wrap img {
             width: 100%;
-            display: block; /* 避免底部出现小空隙 */
-        }
+            display: block;
+}
+
 
 
         .section-label {
