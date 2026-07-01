@@ -259,7 +259,12 @@ s<!DOCTYPE html>
 <div class="section">
             <span class="section-label">Database Architecture Diagram</span>
             <div class="img-wrap" style="margin-bottom:0; border-radius:0;">
+                <img src="arc/3.svg">
             </div>
+            <p style="font-size: 15px; color: var(--text2); line-height: 1.9; margin-bottom: 30px; text-align: justify;">
+    <strong>Figure 3: Database Pipeline Architecture Diagram.</strong> Raw New York City urban datasets are spatially processed using NumPy to generate an aggregated feature matrix. Then,the machine learning model XGBoost, predicts environmental noise levels, while SHAP provides feature explanations and confidence indicators that reflect the reliability of each prediction.
+
+</p>
       
 
     </div>
