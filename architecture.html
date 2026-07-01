@@ -241,6 +241,10 @@ s<!DOCTYPE html>
             <div class="img-wrap" style="margin-bottom:0; border-radius:0;">
                 <img src="arc/2.svg">
             </div>
+            <p style="font-size: 15px; color: var(--text2); line-height: 1.9; margin-bottom: 30px; text-align: justify;">
+    <strong>Figure 1: Development View Architecture Diagram.</strong> This diagram illustrates the static software structure and module organization from a programmer’s perspective. The system adopts a strict layered architectural pattern, clearly separating responsibilities into three distinct tiers: the <strong>Presentation Layer</strong> (Streamlit Web Frontend), the <strong>Business Layer</strong> (API Gateway and Prediction Engine), and the <strong>Data Layer</strong> (ETL Pipeline, Map Database, and NYC Open Data integration). The development view enforces a unidirectional dependency flow, where upper layers depend directly on lower layers. This modular decomposition enhances code maintainability, facilitates parallel development across teams, and establishes clear boundaries for system utilities and core business logic implementation.
+</p>
+
         </div>
 
         <div class="section">
@@ -248,7 +252,9 @@ s<!DOCTYPE html>
             <div class="img-wrap" style="margin-bottom:30px; border-radius:0;">
                 <img src="arc/1.svg">
             </div>
-           
+           <p style="font-size: 15px; color: var(--text2); line-height: 1.9; margin-bottom: 30px; text-align: justify;">
+    <strong>Figure 2: Execution View Architecture Diagram.</strong> This diagram captures the runtime interactions and dynamic communication patterns among deployed components. The execution flow initiates when the browser-based front-end submits user parameters to the Streamlit client. The client forwards an HTTP request to the backend API Gateway, which subsequently invokes the Prediction Engine for inference. The Prediction Engine fetches spatial and grid data from the Map Database, computes the required metrics, and returns the prediction results along with feature attribution data back through the chain. The final output is rendered as a JSON response and displayed on the front-end interface. This view emphasizes the request-response cycle, network boundaries, and the sequential call order essential for understanding system performance and operational behavior.
+</p>
         </div>
 
       
