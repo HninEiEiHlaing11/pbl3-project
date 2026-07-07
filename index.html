@@ -403,8 +403,8 @@
     <p>The following requirements define the specific services and functions the system shall provide.</p>
 
     <ul>
-        <li>FR1. The system shall generate predicted noise levels in decibels for every 50x50 metre grid block across New York City for a forward-looking horizon of up to 12 months.</li>
-        <li>FR2. The system shall apply a predictive model trained on historical urban data to generate monthly noise level predictions per grid block.</li>
+        <li>FR1. The system shall generate predicted noise levels in decibels for every 50x50 metre prediction point across New York City for a forward-looking horizon of up to 12 months.</li>
+        <li>FR2. The system shall apply a predictive model trained on historical urban data to generate monthly noise level predictions per prediction point.</li>
         <li>FR3. The system shall decompose each prediction into individual noise source contributions covering construction, traffic and baseline urban activity.</li>
         <li>FR4. The system shall compute a confidence score for each grid block based on SONYC sensor proximity and the availability of approved permit data, classifying each as High, Medium or Low.</li>
         <li>FR5. The system shall distinguish between temporary noise sources with a defined permit end date and permanent noise sources such as traffic in all prediction outputs.</li>
@@ -437,7 +437,7 @@
         <li>NFR4. The system shall be developed using open source tools and frameworks only.</li>
         <li>NFR5. The geographic scope of the system is limited to New York City in its initial version.</li>
         <li>NFR6. The prediction horizon is fixed at a maximum of 12 months.</li>
-        <li>NFR7. The spatial resolution of the prediction grid is fixed at 50x50 metres.</li>
+        <li>NFR7. The spatial resolution of the prediction point is fixed at 50x50 metres.</li>
         <li>NFR8. The predictive model shall be validated against a held-out historical test dataset prior to deployment.</li>
     </ul>
 
@@ -468,7 +468,7 @@
     <p>The following assumptions underpin the current design and requirements of the system. If any of these assumptions prove incorrect, requirements may need to be revised accordingly.</p>
 
     <ul>
-        <li>A1. SONYC sensor data from 55 sensors is assumed to provide sufficient ground truth coverage to train a model that generalises across the broader NYC grid.</li>
+        <li>A1. SONYC sensor data from 55 sensors is assumed to provide sufficient ground truth coverage to train a model that generalises across the broader NYC grid. SONYC sensor data provides sound event presence flags only and does not include raw decibel readings. Actual dB ground truth is not currently available and predictions rely on proxy signals.</li>
         <li>A2. NYC DOB permit filings are assumed to be a reliable indicator of future construction noise activity within the forecast period.</li>
         <li>A3. Monthly temporal aggregation is assumed to be sufficiently granular for renter decision-making, as renters are assumed to plan by month rather than by week or day.</li>
         <li>A4. The primary users of the system are assumed to be non-technical apartment renters who require plain language outputs without acoustic expertise.</li>
@@ -483,7 +483,7 @@
 
     <ul>
         <li>AC1. Geographic scope may be expanded beyond New York City to other major urban centres as the data pipeline and model architecture are validated.</li>
-        <li>AC2. Additional noise predictors may be incorporated including nightlife density such as proximity to nightclubs and entertainment venues, garbage collection routes and proximity to elevated subway tracks, as these were consistently identified by user research but are outside the current scope.</li>
+        <li>AC2. Nightlife density (NYC Liquor Authority licenses), OpenStreetMap road network, and NYC MapPLUTO zoning data are partially implemented — datasets have been downloaded and filtered but are not yet fully integrated into the prediction pipeline.</li>
         <li>AC3. Mobile browser support may be introduced in a future version following validation of the desktop experience, as some renters indicated they would use the tool while actively searching for apartments on their phones.</li>
         <li>AC4. The confidence indicator may be refined as additional SONYC sensor data becomes available or as the sensor network expands, improving prediction reliability across currently underserved grid blocks.</li>
         <li>AC5. A notification or alert feature may be introduced to inform users of significant predicted noise changes for saved locations, as suggested during the expert interview phase.</li>
