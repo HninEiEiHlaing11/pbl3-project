@@ -257,8 +257,8 @@
 </p>
 <div class="section">
             <span class="section-label">Database Pipeline Architecture Diagram</span>
-            <div class="img-wrap" style="margin-bottom:0; border-radius:0;">
-                <img src="arc/3.png" tyle="padding: 24px; max-width: 100%;">
+            <div class="img-wrap" style="margin-bottom:0; border-radius:0; padding: 30px 20px;">
+                <img src="arc/3.png" style="padding: 24px; max-width: 100%;">
             </div>
             <p style="font-size: 15px; color: var(--text2); line-height: 1.9; margin-bottom: 30px; text-align: justify;">
     <strong>Figure 3: Database Pipeline Architecture Diagram.</strong>  Raw urban data from 9 open sources across all 5 NYC boroughs is cleaned and borough-balanced to prevent geographic bias. A spatial join using 300m haversine radius aggregates nearby features for each of the 4,821 prediction points, producing a feature matrix of 16 features per location. XGBoost classification predicts noise levels as Low, Medium or High, while SHAP TreeExplainer decomposes each prediction into construction, traffic and baseline source contributions.
